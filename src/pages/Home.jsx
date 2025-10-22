@@ -3,6 +3,7 @@ import { Link } from 'react-router';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay, Pagination, Navigation, EffectFade } from 'swiper/modules';
 import { FaStar, FaStarHalfAlt, FaWater, FaSun, FaSeedling, FaLeaf, FaArrowRight } from 'react-icons/fa';
+import { motion } from 'motion/react';
 import plantsData from '../data/plants.json';
 
 // Import Swiper styles
@@ -118,18 +119,34 @@ const Home = () => {
               <div className="absolute inset-0 bg-black/40"></div>
               <div className="relative h-full container mx-auto px-4 flex items-center">
                 <div className="text-white max-w-2xl">
-                  <h1 className="text-5xl lg:text-7xl font-bold mb-6 font-serif leading-tight">
-                    Bring Nature to Your Home
-                  </h1>
-                  <p className="text-xl lg:text-2xl mb-8 text-gray-200">
-                    Discover our collection of beautiful, healthy indoor plants that purify your air and brighten your space
-                  </p>
-                  <Link
-                    to="/plants"
-                    className="btn bg-[#4A7C59] hover:bg-[#2F5233] text-white border-none px-8 py-4 text-lg rounded-lg normal-case inline-flex items-center gap-2"
+                  <motion.h1
+                    initial={{ opacity: 0, y: 30 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.8, delay: 0.2 }}
+                    className="text-5xl lg:text-7xl font-bold mb-6 font-serif leading-tight"
                   >
-                    Shop Now <FaArrowRight />
-                  </Link>
+                    Bring Nature to Your Home
+                  </motion.h1>
+                  <motion.p
+                    initial={{ opacity: 0, y: 30 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.8, delay: 0.4 }}
+                    className="text-xl lg:text-2xl mb-8 text-gray-200"
+                  >
+                    Discover our collection of beautiful, healthy indoor plants that purify your air and brighten your space
+                  </motion.p>
+                  <motion.div
+                    initial={{ opacity: 0, y: 30 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.8, delay: 0.6 }}
+                  >
+                    <Link
+                      to="/plants"
+                      className="btn bg-[#4A7C59] hover:bg-[#2F5233] text-white border-none px-8 py-4 text-lg rounded-lg normal-case inline-flex items-center gap-2 shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105"
+                    >
+                      Shop Now <FaArrowRight />
+                    </Link>
+                  </motion.div>
                 </div>
               </div>
             </div>
@@ -144,18 +161,34 @@ const Home = () => {
               <div className="absolute inset-0 bg-black/40"></div>
               <div className="relative h-full container mx-auto px-4 flex items-center">
                 <div className="text-white max-w-2xl">
-                  <h1 className="text-5xl lg:text-7xl font-bold mb-6 font-serif leading-tight">
-                    Greener Living Starts Here
-                  </h1>
-                  <p className="text-xl lg:text-2xl mb-8 text-gray-200">
-                    Expert care guides, premium plants, and everything you need for a thriving indoor garden
-                  </p>
-                  <Link
-                    to="/plants"
-                    className="btn bg-[#4A7C59] hover:bg-[#2F5233] text-white border-none px-8 py-4 text-lg rounded-lg normal-case inline-flex items-center gap-2"
+                  <motion.h1
+                    initial={{ opacity: 0, x: -30 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.8, delay: 0.2 }}
+                    className="text-5xl lg:text-7xl font-bold mb-6 font-serif leading-tight"
                   >
-                    Explore Plants <FaArrowRight />
-                  </Link>
+                    Greener Living Starts Here
+                  </motion.h1>
+                  <motion.p
+                    initial={{ opacity: 0, x: -30 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.8, delay: 0.4 }}
+                    className="text-xl lg:text-2xl mb-8 text-gray-200"
+                  >
+                    Expert care guides, premium plants, and everything you need for a thriving indoor garden
+                  </motion.p>
+                  <motion.div
+                    initial={{ opacity: 0, x: -30 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.8, delay: 0.6 }}
+                  >
+                    <Link
+                      to="/plants"
+                      className="btn bg-[#4A7C59] hover:bg-[#2F5233] text-white border-none px-8 py-4 text-lg rounded-lg normal-case inline-flex items-center gap-2 shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105"
+                    >
+                      Explore Plants <FaArrowRight />
+                    </Link>
+                  </motion.div>
                 </div>
               </div>
             </div>
@@ -170,18 +203,34 @@ const Home = () => {
               <div className="absolute inset-0 bg-black/40"></div>
               <div className="relative h-full container mx-auto px-4 flex items-center">
                 <div className="text-white max-w-2xl">
-                  <h1 className="text-5xl lg:text-7xl font-bold mb-6 font-serif leading-tight">
-                    Your Plant Journey Begins
-                  </h1>
-                  <p className="text-xl lg:text-2xl mb-8 text-gray-200">
-                    From beginner-friendly to rare species, find the perfect plant companion today
-                  </p>
-                  <Link
-                    to="/plants"
-                    className="btn bg-[#4A7C59] hover:bg-[#2F5233] text-white border-none px-8 py-4 text-lg rounded-lg normal-case inline-flex items-center gap-2"
+                  <motion.h1
+                    initial={{ opacity: 0, scale: 0.9 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ duration: 0.8, delay: 0.2 }}
+                    className="text-5xl lg:text-7xl font-bold mb-6 font-serif leading-tight"
                   >
-                    Get Started <FaArrowRight />
-                  </Link>
+                    Your Plant Journey Begins
+                  </motion.h1>
+                  <motion.p
+                    initial={{ opacity: 0, scale: 0.9 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ duration: 0.8, delay: 0.4 }}
+                    className="text-xl lg:text-2xl mb-8 text-gray-200"
+                  >
+                    From beginner-friendly to rare species, find the perfect plant companion today
+                  </motion.p>
+                  <motion.div
+                    initial={{ opacity: 0, scale: 0.9 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ duration: 0.8, delay: 0.6 }}
+                  >
+                    <Link
+                      to="/plants"
+                      className="btn bg-[#4A7C59] hover:bg-[#2F5233] text-white border-none px-8 py-4 text-lg rounded-lg normal-case inline-flex items-center gap-2 shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105"
+                    >
+                      Get Started <FaArrowRight />
+                    </Link>
+                  </motion.div>
                 </div>
               </div>
             </div>
@@ -192,98 +241,154 @@ const Home = () => {
       {/* Top Rated Indoor Plants Section */}
       <section className="py-20 bg-white">
         <div className="container mx-auto px-4 lg:px-8">
-          <div className="text-center mb-16">
-            <p className="text-[#4A7C59] font-semibold mb-2 tracking-wide uppercase text-sm">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+            className="text-center mb-16"
+          >
+            <motion.p
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              viewport={{ once: true }}
+              className="text-[#4A7C59] font-semibold mb-2 tracking-wide uppercase text-sm"
+            >
               Best Sellers
-            </p>
-            <h2 className="section-heading">Top Rated Indoor Plants</h2>
-            <p className="section-subtitle">
+            </motion.p>
+            <motion.h2
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.3 }}
+              viewport={{ once: true }}
+              className="section-heading"
+            >
+              Top Rated Indoor Plants
+            </motion.h2>
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.4 }}
+              viewport={{ once: true }}
+              className="section-subtitle"
+            >
               Handpicked collection of our most loved plants, perfect for creating your urban jungle
-            </p>
-          </div>
+            </motion.p>
+          </motion.div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {topPlants.map((plant) => (
-              <div
+            {topPlants.map((plant, index) => (
+              <motion.div
                 key={plant.id}
-                className="card bg-white shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-2"
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                viewport={{ once: true }}
+                whileHover={{ y: -8 }}
+                className="card bg-white shadow-xl hover:shadow-2xl transition-all duration-300 group"
               >
-                <figure className="relative px-0 pt-0 h-64 overflow-hidden">
+                <figure className="relative px-0 pt-0 h-64 overflow-hidden rounded-t-2xl">
                   <img
                     src={plant.image}
                     alt={plant.name}
-                    className="w-full h-full object-cover hover:scale-110 transition-transform duration-500"
+                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
                     onError={(e) => {
                       e.target.src = 'https://via.placeholder.com/400x300?text=Plant+Image';
                     }}
                   />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                   {plant.inStock && (
-                    <div className="badge badge-success absolute top-4 right-4 text-white font-semibold">
-                      In Stock
-                    </div>
+                    <motion.div
+                      initial={{ scale: 0, rotate: -180 }}
+                      animate={{ scale: 1, rotate: 0 }}
+                      transition={{ type: 'spring', stiffness: 200, delay: 0.2 + index * 0.1 }}
+                      className="absolute top-4 right-4"
+                    >
+                      <span className="badge badge-success text-white font-semibold shadow-lg px-3 py-2">
+                        In Stock
+                      </span>
+                    </motion.div>
                   )}
                 </figure>
                 <div className="card-body">
-                  <h2 className="card-title text-[#2F5233] font-serif">
+                  <h2 className="card-title text-[#2F5233] font-serif text-xl">
                     {plant.name}
-                    <div className="badge badge-outline border-[#4A7C59] text-[#4A7C59]">
-                      {plant.category}
-                    </div>
                   </h2>
-                  <p className="text-sm text-gray-500 italic">{plant.scientificName}</p>
-                  <p className="text-gray-600 text-sm line-clamp-2">{plant.description}</p>
+                  <p className="text-sm text-gray-500 italic mb-1">{plant.scientificName}</p>
+                  <div className="badge badge-outline border-[#4A7C59] text-[#4A7C59] mb-2">
+                    {plant.category}
+                  </div>
+                  <p className="text-gray-600 text-sm line-clamp-2 leading-relaxed">{plant.description}</p>
                   
                   {/* Plant Info */}
-                  <div className="flex flex-wrap gap-2 mt-2">
-                    <div className="badge badge-sm bg-green-100 text-green-700 border-green-200">
+                  <div className="flex flex-wrap gap-2 mt-3">
+                    <div className="badge badge-sm bg-emerald-50 text-emerald-700 border-emerald-200 font-medium">
                       {plant.difficulty}
                     </div>
-                    <div className="badge badge-sm bg-yellow-100 text-yellow-700 border-yellow-200">
+                    <div className="badge badge-sm bg-amber-50 text-amber-700 border-amber-200 font-medium">
                       {plant.lightRequirement}
                     </div>
                   </div>
 
                   {/* Rating and Price */}
-                  <div className="flex items-center justify-between mt-4">
+                  <div className="flex items-center justify-between mt-4 pt-4 border-t border-gray-100">
                     <div className="flex items-center gap-1">
-                      <FaStar className="text-yellow-500" />
-                      <span className="font-bold">{plant.rating}</span>
-                      <span className="text-gray-500 text-sm">/5</span>
+                      <FaStar className="text-yellow-500 text-lg" />
+                      <span className="font-bold text-lg text-green-500">{plant.rating}</span>
+                      <span className="text-gray-400 text-sm">/5</span>
                     </div>
-                    <div className="text-2xl font-bold text-[#2F5233]">
+                    <div className="text-2xl font-bold text-[#4A7C59]">
                       ৳{plant.price}
                     </div>
                   </div>
 
                   {/* View Details Button */}
-                  <div className="card-actions justify-end mt-4">
+                  <div className="card-actions mt-4">
                     <Link
                       to={`/plant/${plant.id}`}
-                      className="btn bg-[#4A7C59] hover:bg-[#2F5233] text-white w-full rounded-lg normal-case"
+                      className="btn bg-[#4A7C59] hover:bg-[#2F5233] text-white w-full rounded-lg normal-case shadow-md hover:shadow-xl transition-all duration-300 border-none"
                     >
                       View Details
                     </Link>
                   </div>
                 </div>
-              </div>
+              </motion.div>
             ))}
           </div>
 
-          <div className="text-center mt-12">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+            className="text-center mt-12"
+          >
             <Link
               to="/plants"
-              className="btn bg-[#4A7C59] hover:bg-[#2F5233] text-white border-none px-8 rounded-lg normal-case inline-flex items-center gap-2"
+              className="btn bg-[#4A7C59] hover:bg-[#2F5233] text-white border-none px-8 rounded-lg normal-case inline-flex items-center gap-2 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105"
             >
               View All Plants <FaArrowRight />
             </Link>
-          </div>
+          </motion.div>
         </div>
       </section>
 
       {/* Plant Care Tips Section */}
-      <section className="py-20 bg-[#F5F1E8]">
-        <div className="container mx-auto px-4 lg:px-8">
-          <div className="text-center mb-16">
+      <section className="py-20 bg-[#F5F1E8] relative overflow-hidden">
+        <div className="absolute inset-0 opacity-5">
+          <div className="absolute top-20 left-10 w-72 h-72 bg-[#4A7C59] rounded-full blur-3xl"></div>
+          <div className="absolute bottom-20 right-10 w-96 h-96 bg-[#8B9D83] rounded-full blur-3xl"></div>
+        </div>
+        
+        <div className="container mx-auto px-4 lg:px-8 relative z-10">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+            className="text-center mb-16"
+          >
             <p className="text-[#4A7C59] font-semibold mb-2 tracking-wide uppercase text-sm">
               Expert Advice
             </p>
@@ -291,20 +396,31 @@ const Home = () => {
             <p className="section-subtitle">
               Essential care guidelines to keep your plants thriving and healthy
             </p>
-          </div>
+          </motion.div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {careTips.map((tip, index) => (
-              <div
+              <motion.div
                 key={index}
-                className="bg-white p-8 rounded-xl shadow-md hover:shadow-xl transition-shadow duration-300"
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                viewport={{ once: true }}
+                whileHover={{ y: -8, scale: 1.02 }}
+                className="bg-white p-8 rounded-xl shadow-md hover:shadow-2xl transition-all duration-300 group cursor-pointer"
               >
-                <div className="mb-4">{tip.icon}</div>
-                <h3 className="text-xl font-bold text-[#2F5233] mb-3 font-serif">
+                <motion.div
+                  className="mb-4"
+                  whileHover={{ rotate: [0, -10, 10, -10, 0], scale: 1.1 }}
+                  transition={{ duration: 0.5 }}
+                >
+                  {tip.icon}
+                </motion.div>
+                <h3 className="text-xl font-bold text-[#2F5233] mb-3 font-serif group-hover:text-[#4A7C59] transition-colors">
                   {tip.title}
                 </h3>
                 <p className="text-gray-600 leading-relaxed">{tip.description}</p>
-              </div>
+              </motion.div>
             ))}
           </div>
         </div>
@@ -313,7 +429,13 @@ const Home = () => {
       {/* Meet Our Green Experts Section */}
       <section className="py-20 bg-white">
         <div className="container mx-auto px-4 lg:px-8">
-          <div className="text-center mb-16">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+            className="text-center mb-16"
+          >
             <p className="text-[#4A7C59] font-semibold mb-2 tracking-wide uppercase text-sm">
               Our Team
             </p>
@@ -321,38 +443,62 @@ const Home = () => {
             <p className="section-subtitle">
               Passionate plant care specialists ready to help you succeed
             </p>
-          </div>
+          </motion.div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
             {experts.map((expert, index) => (
-              <div
+              <motion.div
                 key={index}
-                className="group text-center hover:-translate-y-2 transition-transform duration-300"
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: index * 0.2 }}
+                viewport={{ once: true }}
+                whileHover={{ y: -8 }}
+                className="group text-center transition-transform duration-300 cursor-pointer"
               >
-                <div className="relative mb-6 overflow-hidden rounded-2xl shadow-lg">
+                <div className="relative mb-6 overflow-hidden rounded-2xl shadow-lg group-hover:shadow-2xl transition-shadow duration-300">
                   <img
                     src={expert.image}
                     alt={expert.name}
-                    className="w-full h-80 object-cover group-hover:scale-110 transition-transform duration-500"
+                    className="w-full h-80 object-cover group-hover:scale-110 transition-transform duration-700"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#2F5233]/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end justify-center pb-6">
+                    <motion.p
+                      initial={{ y: 20, opacity: 0 }}
+                      whileInView={{ y: 0, opacity: 1 }}
+                      transition={{ delay: 0.2 }}
+                      className="text-white font-semibold opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                    >
+                      Connect with {expert.name.split(' ')[0]}
+                    </motion.p>
+                  </div>
                 </div>
-                <h3 className="text-2xl font-bold text-[#2F5233] mb-2 font-serif">
+                <h3 className="text-2xl font-bold text-[#2F5233] mb-2 font-serif group-hover:text-[#4A7C59] transition-colors">
                   {expert.name}
                 </h3>
                 <p className="text-[#4A7C59] font-semibold mb-2">{expert.specialization}</p>
                 <p className="text-gray-600">{expert.description}</p>
-              </div>
+              </motion.div>
             ))}
           </div>
         </div>
       </section>
 
       {/* Extra Section - Plant of the Week */}
-      <section className="py-20 bg-gradient-to-br from-[#2F5233] to-[#1a2e1a] text-white">
-        <div className="container mx-auto px-4 lg:px-8">
+      <section className="py-20 bg-gradient-to-br from-[#2F5233] to-[#1a2e1a] text-white relative overflow-hidden">
+        <div className="absolute inset-0 opacity-10">
+          <div className="absolute -top-20 -left-20 w-96 h-96 bg-[#4A7C59] rounded-full blur-3xl"></div>
+          <div className="absolute -bottom-20 -right-20 w-96 h-96 bg-[#8B9D83] rounded-full blur-3xl"></div>
+        </div>
+        
+        <div className="container mx-auto px-4 lg:px-8 relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <div>
+            <motion.div
+              initial={{ opacity: 0, x: -50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8 }}
+              viewport={{ once: true }}
+            >
               <p className="text-[#8B9D83] font-semibold mb-2 tracking-wide uppercase text-sm">
                 Featured This Week
               </p>
@@ -377,54 +523,93 @@ const Home = () => {
                 </li>
               </ul>
               <div className="flex gap-4">
-                <Link
-                  to="/plant/6"
-                  className="btn bg-white text-[#2F5233] hover:bg-gray-100 border-none px-8"
-                >
-                  View Details
-                </Link>
-                <Link
-                  to="/plants"
-                  className="btn btn-outline text-white hover:bg-white hover:text-[#2F5233] border-white px-8"
-                >
-                  Explore All
-                </Link>
+                <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+                  <Link
+                    to="/plant/6"
+                    className="btn bg-white text-[#2F5233] hover:bg-gray-100 border-none px-8 shadow-xl hover:shadow-2xl transition-all duration-300"
+                  >
+                    View Details
+                  </Link>
+                </motion.div>
+                <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+                  <Link
+                    to="/plants"
+                    className="btn btn-outline text-white hover:bg-white hover:text-[#2F5233] border-white px-8 shadow-lg hover:shadow-xl transition-all duration-300"
+                  >
+                    Explore All
+                  </Link>
+                </motion.div>
               </div>
-            </div>
-            <div className="relative">
-              <div className="absolute -top-10 -right-10 w-64 h-64 bg-[#4A7C59] rounded-full blur-3xl opacity-20"></div>
-              <img
+            </motion.div>
+            <motion.div
+              initial={{ opacity: 0, x: 50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8 }}
+              viewport={{ once: true }}
+              className="relative"
+            >
+              <div className="absolute -top-10 -right-10 w-64 h-64 bg-[#4A7C59] rounded-full blur-3xl opacity-20 float-animation"></div>
+              <motion.img
+                whileHover={{ scale: 1.03, rotate: 1 }}
+                transition={{ duration: 0.3 }}
                 src="/assets/plant_images/Aglaonema_red.jpg"
                 alt="Plant of the Week"
-                className="relative rounded-2xl shadow-2xl w-full h-[500px] object-cover"
+                className="relative rounded-2xl shadow-2xl w-full h-[500px] object-cover hover:shadow-3xl transition-shadow duration-300"
                 onError={(e) => {
                   e.target.src = 'https://via.placeholder.com/500x500?text=Featured+Plant';
                 }}
               />
-            </div>
+            </motion.div>
           </div>
         </div>
       </section>
 
       {/* Newsletter/CTA Section */}
-      <section className="py-16 bg-[#8B9D83]">
-        <div className="container mx-auto px-4 lg:px-8 text-center">
-          <h2 className="text-3xl lg:text-4xl font-bold text-white mb-4 font-serif">
+      <section className="py-16 bg-[#8B9D83] relative overflow-hidden">
+        <div className="absolute inset-0 opacity-10">
+          <div className="absolute top-0 left-1/4 w-64 h-64 bg-white rounded-full blur-3xl"></div>
+          <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-[#4A7C59] rounded-full blur-3xl"></div>
+        </div>
+        
+        <div className="container mx-auto px-4 lg:px-8 text-center relative z-10">
+          <motion.h2
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+            className="text-3xl lg:text-4xl font-bold text-white mb-4 font-serif"
+          >
             Get Weekly Plant Care Tips
-          </h2>
-          <p className="text-white/90 text-lg mb-8 max-w-2xl mx-auto">
+          </motion.h2>
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            viewport={{ once: true }}
+            className="text-white/90 text-lg mb-8 max-w-2xl mx-auto"
+          >
             Join our community of plant lovers and receive expert care tips, exclusive offers, and new arrivals directly to your inbox.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center max-w-md mx-auto">
+          </motion.p>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.4 }}
+            viewport={{ once: true }}
+            className="flex flex-col sm:flex-row gap-4 justify-center max-w-md mx-auto"
+          >
             <input
               type="email"
               placeholder="Enter your email"
-              className="input input-bordered flex-1 bg-white placeholder:text-gray-400"
+              className="input input-bordered flex-1 bg-white text-gray-900 placeholder:text-gray-400 focus:ring-2 focus:ring-white focus:outline-none rounded-lg shadow-md"
             />
-            <button className="btn bg-[#2F5233] hover:bg-[#1a2e1a] text-white border-none px-8 rounded-lg normal-case">
+            <motion.button
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="btn bg-[#2F5233] hover:bg-[#1a2e1a] text-white border-none px-8 rounded-lg normal-case shadow-lg hover:shadow-xl transition-all duration-300"
+            >
               Subscribe
-            </button>
-          </div>
+            </motion.button>
+          </motion.div>
         </div>
       </section>
     </div>

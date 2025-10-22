@@ -3,6 +3,8 @@ import { Link, useNavigate, useLocation } from 'react-router';
 import { AuthContext } from '../context/AuthProvider';
 import { toast } from 'react-toastify';
 import { FaGoogle, FaEye, FaEyeSlash, FaLeaf } from 'react-icons/fa';
+import { Leaf } from 'lucide-react';
+import { motion } from 'motion/react';
 
 const Login = () => {
   const [email, setEmail] = useState('');
@@ -28,7 +30,7 @@ const Login = () => {
 
     try {
       await signIn(email, password);
-      toast.success('Login successful! Welcome back 🌿');
+      toast.success('Login successful! Welcome back');
       navigate(from, { replace: true });
     } catch (error) {
       
@@ -62,7 +64,7 @@ const Login = () => {
 
     try {
       await signInWithGoogle();
-      toast.success('Logged in with Google successfully! 🌿');
+      toast.success('Logged in with Google successfully!');
       navigate(from, { replace: true });
     } catch (error) {
       
@@ -78,19 +80,38 @@ const Login = () => {
 
 
   return (
-    <div className="min-h-screen flex items-center justify-center px-4 py-12 bg-[#F5F1E8]">
-      <div className="max-w-md w-full">
+    <div className="min-h-screen flex items-center justify-center px-4 py-12 bg-[#F5F1E8] relative overflow-hidden">
+      <div className="absolute inset-0 opacity-5">
+        <div className="absolute top-20 left-20 w-72 h-72 bg-[#4A7C59] rounded-full blur-3xl"></div>
+        <div className="absolute bottom-20 right-20 w-96 h-96 bg-[#8B9D83] rounded-full blur-3xl"></div>
+      </div>
+      
+      <div className="max-w-md w-full relative z-10">
         {/* Header */}
-        <div className="text-center mb-8">
-          <div className="flex justify-center mb-4">
+        <motion.div
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          className="text-center mb-8"
+        >
+          <motion.div
+            className="flex justify-center mb-4"
+            animate={{ rotate: [0, 360] }}
+            transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+          >
             <FaLeaf className="text-6xl text-[#4A7C59]" />
-          </div>
-          <h1 className="text-4xl font-bold text-[#2F5233] mb-2">Welcome Back!</h1>
+          </motion.div>
+          <h1 className="text-4xl font-bold text-[#2F5233] mb-2 font-serif">Welcome Back!</h1>
           <p className="text-gray-600">Login to continue your green journey</p>
-        </div>
+        </motion.div>
 
         {/* Login Form */}
-        <div className="bg-white rounded-2xl shadow-xl p-8">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.2 }}
+          className="bg-white rounded-2xl shadow-xl hover:shadow-2xl transition-shadow duration-300 p-8"
+        >
           <form onSubmit={handleSubmit} className="space-y-6">
             {/* Email Field */}
             <div className="form-control">
@@ -142,43 +163,49 @@ const Login = () => {
             </div>
 
             {/* Login Button */}
-            <button
+            <motion.button
               type="submit"
               disabled={loading}
-              className="btn w-full bg-[#4A7C59] hover:bg-[#2F5233] text-white border-none normal-case text-base rounded-lg"
+              whileHover={{ scale: loading ? 1 : 1.02 }}
+              whileTap={{ scale: loading ? 1 : 0.98 }}
+              className="btn w-full bg-[#4A7C59] hover:bg-[#2F5233] text-white border-none normal-case text-base rounded-xl shadow-lg hover:shadow-xl transition-all duration-300"
             >
               {loading ? (
                 <>
-                  <span className="loading loading-spinner"></span>
+                  <span className="loading loading-spinner loading-sm"></span>
                   Logging in...
                 </>
               ) : (
-                'Login'
+                <span className="inline-flex items-center gap-2">
+                  <Leaf size={18} /> Login
+                </span>
               )}
-            </button>
+            </motion.button>
           </form>
 
           {/* Divider */}
           <div className="divider my-6">OR</div>
 
           {/* Google Sign-In Button */}
-          <button
+          <motion.button
             onClick={handleGoogleSignIn}
             disabled={loading}
-            className="btn w-full bg-amber-400 hover:bg-amber-500 text-gray-900 font-semibold border-none normal-case text-base flex items-center justify-center gap-3 rounded-lg"
+            whileHover={{ scale: loading ? 1 : 1.02 }}
+            whileTap={{ scale: loading ? 1 : 0.98 }}
+            className="btn w-full bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white font-semibold border-none normal-case text-base flex items-center justify-center gap-3 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300"
           >
-            <FaGoogle className="text-red-600" size={20} />
+            <FaGoogle size={20} />
             <span>Sign in with Google</span>
-          </button>
+          </motion.button>
 
           {/* Signup Link */}
           <p className="text-center mt-6 text-gray-600">
             Don't have an account?{' '}
-            <Link to="/signup" className="text-[#4A7C59] hover:text-[#2F5233] font-semibold">
+            <Link to="/signup" className="text-[#4A7C59] hover:text-[#2F5233] font-semibold transition-colors">
               Register here
             </Link>
           </p>
-        </div>
+        </motion.div>
       </div>
     </div>
   );

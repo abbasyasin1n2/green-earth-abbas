@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router';
 import { AuthContext } from '../context/AuthProvider';
 import { toast } from 'react-toastify';
 import { FaLeaf, FaArrowLeft } from 'react-icons/fa';
+import { Mail } from 'lucide-react';
 
 const ForgotPassword = () => {
   const [email, setEmail] = useState('');
@@ -29,7 +30,7 @@ const ForgotPassword = () => {
 
     try {
       await resetPassword(email);
-      toast.success('Password reset email sent! Check your inbox 📧');
+      toast.success('Password reset email sent! Check your inbox');
       setEmail('');
       
       // Redirect to login after 2 seconds

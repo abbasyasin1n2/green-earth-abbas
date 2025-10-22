@@ -1,12 +1,23 @@
-import { useContext, useState } from 'react';
+import { useContext, useState, useEffect } from 'react';
 import { Link, NavLink, useLocation } from 'react-router';
 import { AuthContext } from '../context/AuthProvider';
 import { FaLeaf, FaBars, FaTimes } from 'react-icons/fa';
+import { motion, AnimatePresence } from 'motion/react';
 
 const Navbar = () => {
   const { user, logOut } = useContext(AuthContext);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
   const location = useLocation();
+
+  // Handle scroll effect
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 20);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   const handleLogout = () => {
     logOut()
@@ -26,20 +37,31 @@ const Navbar = () => {
     setIsMobileMenuOpen(false);
   };
 
-  // Check if My Profile is active
-  const isProfileActive = location.pathname === '/profile';
-
   return (
-    <nav className="bg-white shadow-md fixed top-0 left-0 right-0 z-50">
+    <motion.nav
+      initial={{ y: -100 }}
+      animate={{ y: 0 }}
+      transition={{ duration: 0.5, type: 'spring', stiffness: 100 }}
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        isScrolled 
+          ? 'bg-white/95 backdrop-blur-md shadow-lg' 
+          : 'bg-white shadow-md'
+      }`}
+    >
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <Link
             to="/"
-            className="flex items-center gap-2 text-2xl font-bold text-[#2F5233] hover:text-[#4A7C59] transition-colors"
+            className="flex items-center gap-2 text-2xl font-bold text-[#2F5233] hover:text-[#4A7C59] transition-all duration-300 group"
             onClick={closeMobileMenu}
           >
-            <FaLeaf className="text-[#4A7C59]" />
+            <motion.div
+              whileHover={{ rotate: 360 }}
+              transition={{ duration: 0.6 }}
+            >
+              <FaLeaf className="text-[#4A7C59] group-hover:drop-shadow-lg" />
+            </motion.div>
             <span className="font-serif">GreenNest</span>
           </Link>
 
@@ -50,38 +72,47 @@ const Navbar = () => {
               <NavLink
                 to="/"
                 className={({ isActive }) =>
-                  `font-semibold transition-colors ${
+                  `font-semibold transition-all duration-300 relative group ${
                     isActive
-                      ? 'text-[#4A7C59] border-b-2 border-[#4A7C59]'
+                      ? 'text-[#4A7C59]'
                       : 'text-gray-700 hover:text-[#4A7C59]'
                   }`
                 }
               >
                 Home
+                <span className={`absolute bottom-0 left-0 w-full h-0.5 bg-[#4A7C59] transition-all duration-300 ${
+                  location.pathname === '/' ? 'opacity-100' : 'opacity-0 group-hover:opacity-100'
+                }`}></span>
               </NavLink>
               <NavLink
                 to="/plants"
                 className={({ isActive }) =>
-                  `font-semibold transition-colors ${
+                  `font-semibold transition-all duration-300 relative group ${
                     isActive
-                      ? 'text-[#4A7C59] border-b-2 border-[#4A7C59]'
+                      ? 'text-[#4A7C59]'
                       : 'text-gray-700 hover:text-[#4A7C59]'
                   }`
                 }
               >
                 Plants
+                <span className={`absolute bottom-0 left-0 w-full h-0.5 bg-[#4A7C59] transition-all duration-300 ${
+                  location.pathname === '/plants' ? 'opacity-100' : 'opacity-0 group-hover:opacity-100'
+                }`}></span>
               </NavLink>
               <NavLink
                 to="/profile"
                 className={({ isActive }) =>
-                  `font-semibold transition-colors ${
+                  `font-semibold transition-all duration-300 relative group ${
                     isActive
-                      ? 'text-[#4A7C59] border-b-2 border-[#4A7C59]'
+                      ? 'text-[#4A7C59]'
                       : 'text-gray-700 hover:text-[#4A7C59]'
                   }`
                 }
               >
                 My Profile
+                <span className={`absolute bottom-0 left-0 w-full h-0.5 bg-[#4A7C59] transition-all duration-300 ${
+                  location.pathname === '/profile' ? 'opacity-100' : 'opacity-0 group-hover:opacity-100'
+                }`}></span>
               </NavLink>
             </div>
 
@@ -90,12 +121,14 @@ const Navbar = () => {
               {user ? (
                 // Logged In - Show Avatar & Dropdown
                 <div className="dropdown dropdown-end">
-                  <div
+                  <motion.div
                     tabIndex={0}
                     role="button"
                     className="btn btn-ghost btn-circle avatar"
+                    whileHover={{ scale: 1.1 }}
+                    whileTap={{ scale: 0.95 }}
                   >
-                    <div className="w-10 h-10 rounded-full ring-2 ring-[#4A7C59] ring-offset-2 overflow-hidden">
+                    <div className="w-10 h-10 rounded-full ring-2 ring-[#4A7C59] ring-offset-2 overflow-hidden transition-all duration-300 hover:ring-4">
                       <img
                         src={user.photoURL || 'https://via.placeholder.com/40?text=User'}
                         alt={user.displayName || 'User'}
@@ -105,7 +138,7 @@ const Navbar = () => {
                         }}
                       />
                     </div>
-                  </div>
+                  </motion.div>
                   <ul
                     tabIndex={0}
                     className="menu menu-sm dropdown-content bg-white rounded-lg shadow-lg mt-3 w-52 p-2 border border-gray-100"
@@ -136,26 +169,32 @@ const Navbar = () => {
               ) : (
                 // Logged Out - Show Login & Register
                 <div className="flex items-center gap-3">
-                  <Link
-                    to="/login"
-                    className="btn btn-outline border-[#4A7C59] text-[#4A7C59] hover:bg-[#4A7C59] hover:text-white hover:border-[#4A7C59] rounded-lg normal-case"
-                  >
-                    Login
-                  </Link>
-                  <Link
-                    to="/signup"
-                    className="btn bg-[#4A7C59] hover:bg-[#2F5233] text-white border-none rounded-lg normal-case"
-                  >
-                    Register
-                  </Link>
+                  <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+                    <Link
+                      to="/login"
+                      className="btn btn-outline border-[#4A7C59] text-[#4A7C59] hover:bg-[#4A7C59] hover:text-white hover:border-[#4A7C59] rounded-lg normal-case transition-all duration-300"
+                    >
+                      Login
+                    </Link>
+                  </motion.div>
+                  <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+                    <Link
+                      to="/signup"
+                      className="btn bg-[#4A7C59] hover:bg-[#2F5233] text-white border-none rounded-lg normal-case transition-all duration-300 shadow-md hover:shadow-lg"
+                    >
+                      Register
+                    </Link>
+                  </motion.div>
                 </div>
               )}
             </div>
           </div>
 
           {/* Mobile Menu Button */}
-          <button
+          <motion.button
             onClick={toggleMobileMenu}
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
             className="md:hidden btn btn-ghost btn-circle"
             aria-label="Toggle mobile menu"
           >
@@ -164,12 +203,19 @@ const Navbar = () => {
             ) : (
               <FaBars className="text-2xl text-[#2F5233]" />
             )}
-          </button>
+          </motion.button>
         </div>
 
         {/* Mobile Menu */}
-        {isMobileMenuOpen && (
-          <div className="md:hidden bg-white border-t border-gray-100 py-4">
+        <AnimatePresence>
+          {isMobileMenuOpen && (
+            <motion.div
+              initial={{ opacity: 0, height: 0 }}
+              animate={{ opacity: 1, height: 'auto' }}
+              exit={{ opacity: 0, height: 0 }}
+              transition={{ duration: 0.3 }}
+              className="md:hidden bg-white border-t border-gray-100 py-4 overflow-hidden"
+            >
             {/* Mobile Navigation Links */}
             <div className="flex flex-col gap-2 mb-4">
               <NavLink
@@ -265,10 +311,11 @@ const Navbar = () => {
                 </div>
               )}
             </div>
-          </div>
+          </motion.div>
         )}
+        </AnimatePresence>
       </div>
-    </nav>
+    </motion.nav>
   );
 };
 

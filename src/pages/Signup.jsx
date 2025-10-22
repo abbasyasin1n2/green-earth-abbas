@@ -3,6 +3,8 @@ import { Link, useNavigate } from 'react-router';
 import { AuthContext } from '../context/AuthProvider';
 import { toast } from 'react-toastify';
 import { FaGoogle, FaEye, FaEyeSlash, FaLeaf, FaCheck, FaTimes } from 'react-icons/fa';
+import { Leaf } from 'lucide-react';
+import { motion } from 'motion/react';
 
 const Signup = () => {
   const [formData, setFormData] = useState({
@@ -70,7 +72,7 @@ const Signup = () => {
         formData.photoURL.trim() || null
       );
       
-      toast.success('Account created successfully! Welcome to GreenNest 🌿');
+      toast.success('Account created successfully! Welcome to GreenNest');
       navigate('/');
     } catch (error) {
       
@@ -102,7 +104,7 @@ const Signup = () => {
 
     try {
       await signInWithGoogle();
-      toast.success('Signed up with Google successfully! 🌿');
+      toast.success('Signed up with Google successfully!');
       navigate('/');
     } catch (error) {
       
@@ -117,19 +119,38 @@ const Signup = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center px-4 py-12 bg-[#F5F1E8]">
-      <div className="max-w-md w-full">
+    <div className="min-h-screen flex items-center justify-center px-4 py-12 bg-[#F5F1E8] relative overflow-hidden">
+      <div className="absolute inset-0 opacity-5">
+        <div className="absolute top-20 left-20 w-72 h-72 bg-[#4A7C59] rounded-full blur-3xl"></div>
+        <div className="absolute bottom-20 right-20 w-96 h-96 bg-[#8B9D83] rounded-full blur-3xl"></div>
+      </div>
+      
+      <div className="max-w-md w-full relative z-10">
         {/* Header */}
-        <div className="text-center mb-8">
-          <div className="flex justify-center mb-4">
+        <motion.div
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          className="text-center mb-8"
+        >
+          <motion.div
+            className="flex justify-center mb-4"
+            animate={{ rotate: [0, 360] }}
+            transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+          >
             <FaLeaf className="text-6xl text-[#4A7C59]" />
-          </div>
-          <h1 className="text-4xl font-bold text-[#2F5233] mb-2">Join GreenNest</h1>
+          </motion.div>
+          <h1 className="text-4xl font-bold text-[#2F5233] mb-2 font-serif">Join GreenNest</h1>
           <p className="text-gray-600">Create your account and start your green journey</p>
-        </div>
+        </motion.div>
 
         {/* Signup Form */}
-        <div className="bg-white rounded-2xl shadow-xl p-8">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.2 }}
+          className="bg-white rounded-2xl shadow-xl hover:shadow-2xl transition-shadow duration-300 p-8"
+        >
           <form onSubmit={handleSubmit} className="space-y-5">
             {/* Name Field */}
             <div className="form-control">
@@ -247,43 +268,49 @@ const Signup = () => {
             </div>
 
             {/* Register Button */}
-            <button
+            <motion.button
               type="submit"
               disabled={loading || !isPasswordValid}
-              className="btn w-full bg-[#4A7C59] hover:bg-[#2F5233] text-white border-none disabled:bg-gray-400 normal-case text-base rounded-lg"
+              whileHover={{ scale: (loading || !isPasswordValid) ? 1 : 1.02 }}
+              whileTap={{ scale: (loading || !isPasswordValid) ? 1 : 0.98 }}
+              className="btn w-full bg-[#4A7C59] hover:bg-[#2F5233] text-white border-none disabled:bg-gray-400 normal-case text-base rounded-xl shadow-lg hover:shadow-xl transition-all duration-300"
             >
               {loading ? (
                 <>
-                  <span className="loading loading-spinner"></span>
+                  <span className="loading loading-spinner loading-sm"></span>
                   Creating account...
                 </>
               ) : (
-                'Register'
+                <span className="inline-flex items-center gap-2">
+                  <Leaf size={18} /> Create Account
+                </span>
               )}
-            </button>
+            </motion.button>
           </form>
 
           {/* Divider */}
           <div className="divider my-6">OR</div>
 
           {/* Google Sign-Up Button */}
-          <button
+          <motion.button
             onClick={handleGoogleSignIn}
             disabled={loading}
-            className="btn w-full bg-amber-400 hover:bg-amber-500 text-gray-900 font-semibold border-none normal-case text-base flex items-center justify-center gap-3 rounded-lg"
+            whileHover={{ scale: loading ? 1 : 1.02 }}
+            whileTap={{ scale: loading ? 1 : 0.98 }}
+            className="btn w-full bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white font-semibold border-none normal-case text-base flex items-center justify-center gap-3 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300"
           >
-            <FaGoogle className="text-red-600" size={20} />
+            <FaGoogle size={20} />
             <span>Sign up with Google</span>
-          </button>
+          </motion.button>
 
           {/* Login Link */}
           <p className="text-center mt-6 text-gray-600">
             Already have an account?{' '}
-            <Link to="/login" className="text-[#4A7C59] hover:text-[#2F5233] font-semibold">
+            <Link to="/login" className="text-[#4A7C59] hover:text-[#2F5233] font-semibold transition-colors">
               Login here
             </Link>
           </p>
-        </div>
+        </motion.div>
       </div>
     </div>
   );

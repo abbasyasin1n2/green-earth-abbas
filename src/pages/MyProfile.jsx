@@ -1,7 +1,9 @@
 import { useState, useContext, useEffect } from 'react';
 import { AuthContext } from '../context/AuthProvider';
 import { FaUser, FaEnvelope, FaCamera, FaEdit, FaSave, FaTimes } from 'react-icons/fa';
+import { Sparkles, Check } from 'lucide-react';
 import { toast } from 'react-toastify';
+import { motion, AnimatePresence } from 'motion/react';
 
 const MyProfile = () => {
   const { user, updateUserProfile } = useContext(AuthContext);
@@ -49,7 +51,7 @@ const MyProfile = () => {
 
     try {
       await updateUserProfile(formData.displayName.trim(), formData.photoURL.trim() || null);
-      toast.success('Profile updated successfully! ✨');
+      toast.success('Profile updated successfully!');
       setIsEditing(false);
     } catch (error) {
       toast.error('Failed to update profile. Please try again.');
@@ -84,24 +86,48 @@ const MyProfile = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-white to-green-50 py-12">
-      <div className="container mx-auto px-4">
+    <div className="min-h-screen bg-gradient-to-b from-white to-green-50 py-12 relative overflow-hidden">
+      <div className="absolute inset-0 opacity-5">
+        <div className="absolute top-20 left-20 w-72 h-72 bg-[#4A7C59] rounded-full blur-3xl"></div>
+        <div className="absolute bottom-20 right-20 w-96 h-96 bg-[#8B9D83] rounded-full blur-3xl"></div>
+      </div>
+      
+      <div className="container mx-auto px-4 relative z-10">
         <div className="max-w-4xl mx-auto">
           {/* Header */}
-          <div className="text-center mb-12">
+          <motion.div
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="text-center mb-12"
+          >
             <h1 className="text-4xl md:text-5xl font-bold text-[#2F5233] font-serif mb-4">
               My Profile
             </h1>
             <p className="text-gray-600">Manage your account information</p>
-          </div>
+          </motion.div>
 
           {/* Profile Card */}
-          <div className="card bg-white shadow-2xl">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="card bg-white shadow-2xl hover:shadow-3xl transition-shadow duration-300"
+          >
             <div className="card-body">
               {/* Profile Header with Avatar */}
-              <div className="flex flex-col items-center mb-8 pt-6">
-                <div className="avatar mb-4">
-                  <div className="w-32 h-32 rounded-full ring-4 ring-[#4A7C59] ring-offset-4 overflow-hidden bg-white">
+              <motion.div
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.6, delay: 0.3 }}
+                className="flex flex-col items-center mb-8 pt-6"
+              >
+                <motion.div
+                  className="avatar mb-4"
+                  whileHover={{ scale: 1.05 }}
+                  transition={{ duration: 0.3 }}
+                >
+                  <div className="w-32 h-32 rounded-full ring-4 ring-[#4A7C59] ring-offset-4 overflow-hidden bg-white hover:ring-6 transition-all duration-300 cursor-pointer">
                     <img
                       src={user.photoURL || 'https://via.placeholder.com/150?text=User'}
                       alt={user.displayName || 'User'}
@@ -111,35 +137,57 @@ const MyProfile = () => {
                       }}
                     />
                   </div>
-                </div>
+                </motion.div>
                 <h2 className="text-3xl font-bold text-[#2F5233] font-serif">
                   {user.displayName || 'Plant Lover'}
                 </h2>
                 <p className="text-gray-500 text-sm">{user.email}</p>
-              </div>
+              </motion.div>
 
               {/* Edit/View Mode Toggle */}
               <div className="flex justify-end mb-6">
-                {!isEditing ? (
-                  <button
-                    onClick={() => setIsEditing(true)}
-                    className="btn bg-[#4A7C59] hover:bg-[#2F5233] text-white rounded-lg normal-case inline-flex items-center gap-2"
-                  >
-                    <FaEdit /> Edit Profile
-                  </button>
-                ) : (
-                  <button
-                    onClick={handleCancel}
-                    className="btn btn-outline border-gray-400 text-gray-600 hover:bg-gray-100 rounded-lg normal-case inline-flex items-center gap-2"
-                  >
-                    <FaTimes /> Cancel
-                  </button>
-                )}
+                <AnimatePresence mode="wait">
+                  {!isEditing ? (
+                    <motion.button
+                      key="edit-button"
+                      initial={{ opacity: 0, scale: 0.9 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      exit={{ opacity: 0, scale: 0.9 }}
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
+                      onClick={() => setIsEditing(true)}
+                      className="btn bg-[#4A7C59] hover:bg-[#2F5233] text-white rounded-xl normal-case inline-flex items-center gap-2 shadow-lg hover:shadow-xl transition-all duration-300 border-none"
+                    >
+                      <FaEdit /> Edit Profile
+                    </motion.button>
+                  ) : (
+                    <motion.button
+                      key="cancel-button"
+                      initial={{ opacity: 0, scale: 0.9 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      exit={{ opacity: 0, scale: 0.9 }}
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
+                      onClick={handleCancel}
+                      className="btn btn-outline border-gray-400 text-gray-600 hover:bg-gray-100 rounded-lg normal-case inline-flex items-center gap-2"
+                    >
+                      <FaTimes /> Cancel
+                    </motion.button>
+                  )}
+                </AnimatePresence>
               </div>
 
               {/* Profile Information */}
-              {!isEditing ? (
-                <div className="space-y-4">
+              <AnimatePresence mode="wait">
+                {!isEditing ? (
+                  <motion.div
+                    key="view-mode"
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    exit={{ opacity: 0, x: 20 }}
+                    transition={{ duration: 0.3 }}
+                    className="space-y-4"
+                  >
                   {/* Display Name */}
                   <div className="flex items-start gap-4 p-5 bg-gradient-to-r from-green-50 to-emerald-50 rounded-xl border border-green-100 shadow-sm">
                     <FaUser className="text-[#4A7C59] text-xl mt-1" />
@@ -173,9 +221,17 @@ const MyProfile = () => {
                       </p>
                     </div>
                   </div>
-                </div>
+                </motion.div>
               ) : (
-                <form onSubmit={handleSubmit} className="space-y-6">
+                <motion.form
+                  key="edit-mode"
+                  initial={{ opacity: 0, x: 20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0, x: -20 }}
+                  transition={{ duration: 0.3 }}
+                  onSubmit={handleSubmit}
+                  className="space-y-6"
+                >
                   {/* Display Name Input */}
                   <div className="form-control">
                     <label className="label">
@@ -247,22 +303,26 @@ const MyProfile = () => {
 
                   {/* Submit Button */}
                   <div className="flex justify-end gap-4 pt-4">
-                    <button
+                    <motion.button
                       type="button"
                       onClick={handleCancel}
-                      className="btn btn-outline rounded-lg normal-case"
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
+                      className="btn btn-outline rounded-xl normal-case border-2"
                       disabled={loading}
                     >
                       Cancel
-                    </button>
-                    <button
+                    </motion.button>
+                    <motion.button
                       type="submit"
-                      className="btn bg-[#4A7C59] hover:bg-[#2F5233] text-white rounded-lg normal-case"
+                      whileHover={{ scale: loading ? 1 : 1.05 }}
+                      whileTap={{ scale: loading ? 1 : 0.95 }}
+                      className="btn bg-[#4A7C59] hover:bg-[#2F5233] text-white rounded-xl normal-case shadow-lg hover:shadow-xl transition-all duration-300 border-none"
                       disabled={loading}
                     >
                       {loading ? (
                         <>
-                          <span className="loading loading-spinner"></span>
+                          <span className="loading loading-spinner loading-sm"></span>
                           Updating...
                         </>
                       ) : (
@@ -270,22 +330,30 @@ const MyProfile = () => {
                           <FaSave /> Save Changes
                         </>
                       )}
-                    </button>
+                    </motion.button>
                   </div>
-                </form>
+                </motion.form>
               )}
+              </AnimatePresence>
             </div>
-          </div>
+          </motion.div>
 
           {/* Additional Info Card */}
-          <div className="card bg-white shadow-md mt-8">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.4 }}
+            className="card bg-white shadow-md hover:shadow-xl transition-shadow duration-300 mt-8"
+          >
             <div className="card-body">
               <h3 className="card-title text-[#2F5233] font-serif">Account Information</h3>
               <div className="divider"></div>
               <div className="space-y-4 text-sm">
                 <div className="flex justify-between items-center py-3 border-b border-gray-100">
                   <span className="text-gray-600 font-medium">Account Status:</span>
-                  <span className="badge bg-[#4A7C59] text-white border-none">Active</span>
+                  <span className="badge bg-emerald-500 text-white border-none shadow-sm inline-flex items-center gap-1">
+                    <Check size={14} /> Active
+                  </span>
                 </div>
                 <div className="flex justify-between items-center py-3 border-b border-gray-100">
                   <span className="text-gray-600 font-medium">Member Since:</span>
@@ -313,7 +381,7 @@ const MyProfile = () => {
                 </div>
               </div>
             </div>
-          </div>
+          </motion.div>
         </div>
       </div>
     </div>

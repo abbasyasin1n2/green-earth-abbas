@@ -1,6 +1,8 @@
 import { useState, useContext, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router';
 import { FaStar, FaLeaf, FaSun, FaTint, FaSeedling, FaCheckCircle } from 'react-icons/fa';
+import { Leaf, Phone, Calendar } from 'lucide-react';
+import { motion } from 'motion/react';
 import { AuthContext } from '../context/AuthProvider';
 import { toast } from 'react-toastify';
 import plantsData from '../data/plants.json';
@@ -78,7 +80,7 @@ const PlantDetails = () => {
     }
 
     // Success (no backend, just UI)
-    toast.success(`Consultation booked for ${plant.name}! We'll contact you soon. 🌿`);
+    toast.success(`Consultation booked for ${plant.name}! We'll contact you soon.`);
     
     // Debug info for Chrome issues
     console.log('Consultation form submitted successfully:', {
@@ -122,7 +124,9 @@ const PlantDetails = () => {
     return (
       <div className="min-h-screen flex items-center justify-center bg-gradient-to-b from-white to-green-50">
         <div className="text-center px-4">
-          <div className="text-8xl mb-6">🌿</div>
+          <div className="mb-6 flex justify-center">
+            <Leaf className="text-[#4A7C59]" size={96} />
+          </div>
           <h1 className="text-4xl font-bold text-[#2F5233] mb-4 font-serif">
             Plant Not Found
           </h1>
@@ -153,33 +157,53 @@ const PlantDetails = () => {
       {/* Plant Details Section */}
       <div className="container mx-auto px-4 py-12">
         {/* Back Button */}
-        <button
+        <motion.button
           onClick={() => navigate('/plants')}
+          initial={{ opacity: 0, x: -20 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.5 }}
+          whileHover={{ x: -5 }}
           className="btn btn-ghost text-[#4A7C59] mb-6"
         >
           ← Back to Plants
-        </button>
+        </motion.button>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
           {/* Image Section */}
-          <div className="relative">
-            <img
+          <motion.div
+            initial={{ opacity: 0, x: -50 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.6 }}
+            className="relative"
+          >
+            <motion.img
+              whileHover={{ scale: 1.02 }}
+              transition={{ duration: 0.3 }}
               src={plant.image}
               alt={plant.name}
-              className="w-full h-[500px] object-cover rounded-2xl shadow-2xl"
+              className="w-full h-[500px] object-cover rounded-2xl shadow-2xl hover:shadow-3xl transition-shadow duration-300"
               onError={(e) => {
                 e.target.src = 'https://via.placeholder.com/500x500?text=Plant+Image';
               }}
             />
             {plant.inStock && (
-              <div className="badge badge-success absolute top-6 right-6 text-white font-semibold p-4">
+              <motion.div
+                initial={{ scale: 0, rotate: -180 }}
+                animate={{ scale: 1, rotate: 0 }}
+                transition={{ type: 'spring', stiffness: 200, delay: 0.3 }}
+                className="badge badge-success absolute top-6 right-6 text-white font-semibold p-4 shadow-lg"
+              >
                 <FaCheckCircle className="mr-2" /> In Stock
-              </div>
+              </motion.div>
             )}
-          </div>
+          </motion.div>
 
           {/* Details Section */}
-          <div>
+          <motion.div
+            initial={{ opacity: 0, x: 50 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+          >
             <div className="badge badge-outline border-[#4A7C59] text-[#4A7C59] mb-4">
               {plant.category}
             </div>
@@ -189,93 +213,146 @@ const PlantDetails = () => {
             <p className="text-xl text-gray-500 italic mb-4">{plant.scientificName}</p>
 
             {/* Rating and Price */}
-            <div className="flex items-center gap-6 mb-6">
+            <div className="flex items-center gap-6 mb-6 pb-6 border-b border-gray-100">
               <div className="flex items-center gap-2">
                 <FaStar className="text-yellow-500 text-2xl" />
                 <span className="text-2xl font-bold">{plant.rating}</span>
-                <span className="text-gray-500">/5</span>
+                <span className="text-gray-400">/5</span>
               </div>
-              <div className="text-4xl font-bold text-[#2F5233]">
+              <div className="text-4xl font-bold text-[#4A7C59]">
                 ৳{plant.price}
               </div>
             </div>
 
             {/* Quick Info Cards */}
             <div className="grid grid-cols-2 gap-4 mb-6">
-              <div className="bg-white p-4 rounded-lg shadow-md border-l-4 border-[#4A7C59]">
-                <FaSeedling className="text-[#4A7C59] text-2xl mb-2" />
-                <p className="text-gray-600 text-sm">Difficulty</p>
-                <p className="font-bold text-[#2F5233]">{plant.difficulty}</p>
-              </div>
-              <div className="bg-white p-4 rounded-lg shadow-md border-l-4 border-yellow-500">
-                <FaSun className="text-yellow-500 text-2xl mb-2" />
-                <p className="text-gray-600 text-sm">Light</p>
-                <p className="font-bold text-[#2F5233]">{plant.lightRequirement}</p>
-              </div>
-              <div className="bg-white p-4 rounded-lg shadow-md border-l-4 border-blue-500">
-                <FaTint className="text-blue-500 text-2xl mb-2" />
-                <p className="text-gray-600 text-sm">Watering</p>
-                <p className="font-bold text-[#2F5233]">{plant.wateringFrequency}</p>
-              </div>
-              <div className="bg-white p-4 rounded-lg shadow-md border-l-4 border-green-500">
-                <FaLeaf className="text-green-500 text-2xl mb-2" />
-                <p className="text-gray-600 text-sm">Category</p>
-                <p className="font-bold text-[#2F5233]">{plant.category}</p>
-              </div>
+              {[
+                { icon: <FaSeedling className="text-[#4A7C59] text-2xl mb-2" />, label: 'Difficulty', value: plant.difficulty, color: 'border-[#4A7C59]', bgColor: 'bg-emerald-50', delay: 0 },
+                { icon: <FaSun className="text-amber-500 text-2xl mb-2" />, label: 'Light', value: plant.lightRequirement, color: 'border-amber-500', bgColor: 'bg-amber-50', delay: 0.1 },
+                { icon: <FaTint className="text-blue-500 text-2xl mb-2" />, label: 'Watering', value: plant.wateringFrequency, color: 'border-blue-500', bgColor: 'bg-blue-50', delay: 0.2 },
+                { icon: <FaLeaf className="text-emerald-500 text-2xl mb-2" />, label: 'Category', value: plant.category, color: 'border-emerald-500', bgColor: 'bg-emerald-50', delay: 0.3 }
+              ].map((item, index) => (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: 0.4 + item.delay }}
+                  whileHover={{ y: -5, scale: 1.02 }}
+                  className={`${item.bgColor} p-5 rounded-xl shadow-md hover:shadow-xl transition-all duration-300 border-l-4 ${item.color} cursor-pointer`}
+                >
+                  <motion.div whileHover={{ rotate: 360 }} transition={{ duration: 0.6 }}>
+                    {item.icon}
+                  </motion.div>
+                  <p className="text-gray-600 text-xs font-semibold uppercase tracking-wide mb-1">{item.label}</p>
+                  <p className="font-bold text-[#2F5233] text-lg">{item.value}</p>
+                </motion.div>
+              ))}
             </div>
 
             {/* Book Consultation Button */}
-            <a
+            <motion.a
               href="#consultation-form"
-              className="btn bg-[#4A7C59] hover:bg-[#2F5233] text-white text-lg w-full mb-4 border-none normal-case rounded-lg"
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+              className="btn bg-[#4A7C59] hover:bg-[#2F5233] text-white text-lg w-full mb-3 border-none normal-case rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 inline-flex items-center justify-center gap-2"
             >
-              Book Free Consultation
-            </a>
+              <Phone size={20} /> Book Free Consultation
+            </motion.a>
 
-            <p className="text-center text-gray-500 text-sm">
-              Get expert advice on how to care for your {plant.name}
+            <p className="text-center text-gray-500 text-sm leading-relaxed inline-flex items-center justify-center gap-1">
+              Get expert advice on how to care for your {plant.name} <Leaf size={16} />
             </p>
-          </div>
+          </motion.div>
         </div>
 
         {/* Detailed Information Tabs */}
-        <div className="mt-16">
-          <div role="tablist" className="tabs tabs-boxed bg-white shadow-md">
-            <input type="radio" name="plant_tabs" role="tab" className="tab" aria-label="Description" defaultChecked />
-            <div role="tabpanel" className="tab-content bg-base-100 border-base-300 rounded-box p-6 mt-6">
-              <h2 className="text-2xl font-bold text-[#2F5233] mb-4">About This Plant</h2>
-              <p className="text-gray-700 leading-relaxed">{plant.description}</p>
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.4 }}
+          className="mt-16"
+        >
+          <div role="tablist" className="tabs tabs-boxed bg-white shadow-lg rounded-xl p-2 gap-3">
+            <input 
+              type="radio" 
+              name="plant_tabs" 
+              role="tab" 
+              className="tab text-base font-semibold px-6 py-3 rounded-lg transition-all duration-300 data-[state=active]:bg-[#4A7C59] data-[state=active]:text-white hover:bg-green-50" 
+              aria-label="Description" 
+              defaultChecked 
+            />
+            <div role="tabpanel" className="tab-content bg-white border border-gray-100 rounded-xl shadow-md p-8 mt-6">
+              <h2 className="text-2xl md:text-3xl font-bold text-[#2F5233] mb-6 font-serif flex items-center gap-3">
+                <span className="w-1.5 h-8 bg-[#4A7C59] rounded-full"></span>
+                About This Plant
+              </h2>
+              <p className="text-gray-700 leading-relaxed text-lg">{plant.description}</p>
             </div>
 
-            <input type="radio" name="plant_tabs" role="tab" className="tab" aria-label="Care Guide" />
-            <div role="tabpanel" className="tab-content bg-base-100 border-base-300 rounded-box p-6 mt-6">
-              <h2 className="text-2xl font-bold text-[#2F5233] mb-4">Care Instructions</h2>
-              <p className="text-gray-700 leading-relaxed">{plant.careInstructions}</p>
+            <input 
+              type="radio" 
+              name="plant_tabs" 
+              role="tab" 
+              className="tab text-base font-semibold px-6 py-3 rounded-lg transition-all duration-300 data-[state=active]:bg-[#4A7C59] data-[state=active]:text-white hover:bg-green-50" 
+              aria-label="Care Guide" 
+            />
+            <div role="tabpanel" className="tab-content bg-white border border-gray-100 rounded-xl shadow-md p-8 mt-6">
+              <h2 className="text-2xl md:text-3xl font-bold text-[#2F5233] mb-6 font-serif flex items-center gap-3">
+                <span className="w-1.5 h-8 bg-[#4A7C59] rounded-full"></span>
+                Care Instructions
+              </h2>
+              <p className="text-gray-700 leading-relaxed text-lg">{plant.careInstructions}</p>
             </div>
 
-            <input type="radio" name="plant_tabs" role="tab" className="tab" aria-label="Benefits" />
-            <div role="tabpanel" className="tab-content bg-base-100 border-base-300 rounded-box p-6 mt-6">
-              <h2 className="text-2xl font-bold text-[#2F5233] mb-4">Benefits</h2>
-              <p className="text-gray-700 leading-relaxed">{plant.benefits}</p>
+            <input 
+              type="radio" 
+              name="plant_tabs" 
+              role="tab" 
+              className="tab text-base font-semibold px-6 py-3 rounded-lg transition-all duration-300 data-[state=active]:bg-[#4A7C59] data-[state=active]:text-white hover:bg-green-50" 
+              aria-label="Benefits" 
+            />
+            <div role="tabpanel" className="tab-content bg-white border border-gray-100 rounded-xl shadow-md p-8 mt-6">
+              <h2 className="text-2xl md:text-3xl font-bold text-[#2F5233] mb-6 font-serif flex items-center gap-3">
+                <span className="w-1.5 h-8 bg-[#4A7C59] rounded-full"></span>
+                Benefits
+              </h2>
+              <p className="text-gray-700 leading-relaxed text-lg">{plant.benefits}</p>
             </div>
           </div>
-        </div>
+        </motion.div>
       </div>
 
       {/* Consultation Form Section */}
-      <div id="consultation-form" className="bg-white py-16">
-        <div className="container mx-auto px-4">
+      <div id="consultation-form" className="bg-white py-16 relative overflow-hidden">
+        <div className="absolute inset-0 opacity-5">
+          <div className="absolute top-0 left-0 w-64 h-64 bg-[#4A7C59] rounded-full blur-3xl"></div>
+          <div className="absolute bottom-0 right-0 w-96 h-96 bg-[#8B9D83] rounded-full blur-3xl"></div>
+        </div>
+        
+        <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-3xl mx-auto">
-            <div className="text-center mb-10">
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+              viewport={{ once: true }}
+              className="text-center mb-10"
+            >
               <h2 className="text-3xl md:text-4xl font-bold text-[#2F5233] mb-4 font-serif">
                 Book Consultation for {plant.name}
               </h2>
               <p className="text-gray-600 text-lg">
                 Fill in your details and our plant experts will contact you soon!
               </p>
-            </div>
+            </motion.div>
 
-            <div className="bg-white shadow-2xl rounded-2xl p-8 border border-gray-100">
+            <motion.div
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              viewport={{ once: true }}
+              className="bg-white shadow-2xl rounded-2xl p-8 border border-gray-100 hover:shadow-3xl transition-shadow duration-300"
+            >
               <form onSubmit={handleSubmit}>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   {/* Name */}
@@ -360,16 +437,20 @@ const PlantDetails = () => {
                 </div>
 
                 {/* Submit Button */}
-                <div className="mt-8">
+                <motion.div
+                  className="mt-8"
+                  whileHover={{ scale: 1.01 }}
+                  whileTap={{ scale: 0.99 }}
+                >
                   <button
                     type="submit"
-                    className="btn bg-[#4A7C59] hover:bg-[#2F5233] text-white text-lg w-full border-none normal-case rounded-lg"
+                    className="btn bg-[#4A7C59] hover:bg-[#2F5233] text-white text-lg w-full border-none normal-case rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 inline-flex items-center justify-center gap-2"
                   >
-                    Book Consultation
+                    <Calendar size={20} /> Book Consultation
                   </button>
-                </div>
+                </motion.div>
               </form>
-            </div>
+            </motion.div>
           </div>
         </div>
       </div>
