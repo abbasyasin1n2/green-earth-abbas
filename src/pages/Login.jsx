@@ -9,10 +9,8 @@ const Login = () => {
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
-  const [showForgotModal, setShowForgotModal] = useState(false);
-  const [forgotEmail, setForgotEmail] = useState('');
 
-  const { signIn, signInWithGoogle, resetPassword, user } = useContext(AuthContext);
+  const { signIn, signInWithGoogle, user } = useContext(AuthContext);
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -83,35 +81,6 @@ const Login = () => {
     }
   };
 
-  // Handle Forgot Password
-  const handleForgotPassword = async (e) => {
-    e.preventDefault();
-
-    if (!forgotEmail) {
-      toast.error('Please enter your email address');
-      return;
-    }
-
-    try {
-      await resetPassword(forgotEmail);
-      toast.success('Password reset email sent! Check your inbox 📧');
-      setShowForgotModal(false);
-      setForgotEmail('');
-    } catch (error) {
-      console.error('Reset password error:', error);
-      
-      switch (error.code) {
-        case 'auth/invalid-email':
-          toast.error('Please enter a valid email address');
-          break;
-        case 'auth/user-not-found':
-          toast.error('No account found with this email');
-          break;
-        default:
-          toast.error('Failed to send reset email. Please try again');
-      }
-    }
-  };
 
   return (
     <div className="min-h-screen flex items-center justify-center px-4 py-12 bg-[#F5F1E8]">
@@ -136,7 +105,7 @@ const Login = () => {
               <input
                 type="email"
                 placeholder="Enter your email"
-                className="input input-bordered w-full focus:outline-none focus:ring-2 focus:ring-[#4A7C59]"
+                className="input input-bordered w-full bg-white text-gray-900 focus:outline-none focus:ring-2 focus:ring-[#4A7C59]"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 required
@@ -152,7 +121,7 @@ const Login = () => {
                 <input
                   type={showPassword ? 'text' : 'password'}
                   placeholder="Enter your password"
-                  className="input input-bordered w-full pr-12 focus:outline-none focus:ring-2 focus:ring-[#4A7C59]"
+                  className="input input-bordered w-full bg-white text-gray-900 pr-12 focus:outline-none focus:ring-2 focus:ring-[#4A7C59]"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   required
@@ -169,13 +138,12 @@ const Login = () => {
 
             {/* Forgot Password Link */}
             <div className="text-right">
-              <button
-                type="button"
-                onClick={() => setShowForgotModal(true)}
+              <Link
+                to="/forgot-password"
                 className="text-sm text-[#4A7C59] hover:text-[#2F5233] font-medium"
               >
                 Forgot Password?
-              </button>
+              </Link>
             </div>
 
             {/* Login Button */}
@@ -217,46 +185,6 @@ const Login = () => {
           </p>
         </div>
       </div>
-
-      {/* Forgot Password Modal */}
-      {showForgotModal && (
-        <div className="modal modal-open">
-          <div className="modal-box">
-            <h3 className="font-bold text-lg text-[#2F5233] mb-4">Reset Password</h3>
-            <form onSubmit={handleForgotPassword}>
-              <div className="form-control">
-                <label className="label">
-                  <span className="label-text">Enter your email address</span>
-                </label>
-                <input
-                  type="email"
-                  placeholder="your@email.com"
-                  className="input input-bordered w-full focus:outline-none focus:ring-2 focus:ring-[#4A7C59]"
-                  value={forgotEmail}
-                  onChange={(e) => setForgotEmail(e.target.value)}
-                  required
-                />
-              </div>
-              <div className="modal-action">
-                <button
-                  type="button"
-                  onClick={() => {
-                    setShowForgotModal(false);
-                    setForgotEmail('');
-                  }}
-                  className="btn"
-                >
-                  Cancel
-                </button>
-                <button type="submit" className="btn bg-[#4A7C59] hover:bg-[#2F5233] text-white border-none">
-                  Send Reset Email
-                </button>
-              </div>
-            </form>
-          </div>
-          <div className="modal-backdrop" onClick={() => setShowForgotModal(false)}></div>
-        </div>
-      )}
     </div>
   );
 };

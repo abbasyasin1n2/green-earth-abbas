@@ -57,7 +57,7 @@ const Plants = () => {
   return (
     <div className="min-h-screen bg-gradient-to-b from-white to-green-50">
       {/* Header Section */}
-      <div className="bg-[#2F5233] text-white py-16">
+      <div className="bg-[#2F5233] text-white py-16 pt-28">
         <div className="container mx-auto px-4">
           <h1 className="text-4xl md:text-5xl font-bold text-center font-serif mb-4">
             Our Plant Collection
@@ -162,6 +162,9 @@ const Plants = () => {
                     src={plant.image}
                     alt={plant.name}
                     className="w-full h-full object-cover hover:scale-110 transition-transform duration-300"
+                    onError={(e) => {
+                      e.target.src = 'https://via.placeholder.com/400x300?text=Plant+Image';
+                    }}
                   />
                   {plant.inStock && (
                     <div className="badge badge-success absolute top-4 right-4 text-white font-semibold">

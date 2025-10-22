@@ -10,7 +10,7 @@ const PlantDetails = () => {
   const navigate = useNavigate();
   const { user } = useContext(AuthContext);
   const [plant, setPlant] = useState(null);
-  const [showModal, setShowModal] = useState(false);
+  const [notFound, setNotFound] = useState(false);
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -24,11 +24,11 @@ const PlantDetails = () => {
     const foundPlant = plantsData.find(p => p.id === parseInt(id));
     if (foundPlant) {
       setPlant(foundPlant);
+      setNotFound(false);
     } else {
-      toast.error('Plant not found!');
-      navigate('/plants');
+      setNotFound(true);
     }
-  }, [id, navigate]);
+  }, [id]);
 
   useEffect(() => {
     // Pre-fill user data if logged in
@@ -71,7 +71,6 @@ const PlantDetails = () => {
 
     // Success (no backend, just UI)
     toast.success(`Consultation booked for ${plant.name}! We'll contact you soon. 🌿`);
-    setShowModal(false);
     
     // Reset form
     setFormData({
@@ -81,12 +80,50 @@ const PlantDetails = () => {
       preferredDate: '',
       message: ''
     });
+    
+    // Scroll to top
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
-  if (!plant) {
+  // Loading state
+  if (!plant && !notFound) {
     return (
-      <div className="min-h-screen flex items-center justify-center">
-        <span className="loading loading-spinner loading-lg text-[#4A7C59]"></span>
+      <div className="min-h-screen flex items-center justify-center bg-gradient-to-b from-white to-green-50">
+        <div className="text-center">
+          <span className="loading loading-spinner loading-lg text-[#4A7C59]"></span>
+          <p className="mt-4 text-gray-600">Loading plant details...</p>
+        </div>
+      </div>
+    );
+  }
+
+  // 404 - Plant not found
+  if (notFound) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-gradient-to-b from-white to-green-50">
+        <div className="text-center px-4">
+          <div className="text-8xl mb-6">🌿</div>
+          <h1 className="text-4xl font-bold text-[#2F5233] mb-4 font-serif">
+            Plant Not Found
+          </h1>
+          <p className="text-xl text-gray-600 mb-8">
+            Sorry, we couldn't find the plant you're looking for.
+          </p>
+          <div className="flex gap-4 justify-center">
+            <button
+              onClick={() => navigate('/plants')}
+              className="btn bg-[#4A7C59] hover:bg-[#2F5233] text-white"
+            >
+              Browse All Plants
+            </button>
+            <button
+              onClick={() => navigate('/')}
+              className="btn btn-outline border-[#4A7C59] text-[#4A7C59] hover:bg-[#4A7C59] hover:text-white"
+            >
+              Go Home
+            </button>
+          </div>
+        </div>
       </div>
     );
   }
@@ -110,6 +147,9 @@ const PlantDetails = () => {
               src={plant.image}
               alt={plant.name}
               className="w-full h-[500px] object-cover rounded-2xl shadow-2xl"
+              onError={(e) => {
+                e.target.src = 'https://via.placeholder.com/500x500?text=Plant+Image';
+              }}
             />
             {plant.inStock && (
               <div className="badge badge-success absolute top-6 right-6 text-white font-semibold p-4">
@@ -165,12 +205,12 @@ const PlantDetails = () => {
             </div>
 
             {/* Book Consultation Button */}
-            <button
-              onClick={() => setShowModal(true)}
+            <a
+              href="#consultation-form"
               className="btn bg-[#4A7C59] hover:bg-[#2F5233] text-white text-lg w-full mb-4"
             >
               Book Free Consultation
-            </button>
+            </a>
 
             <p className="text-center text-gray-500 text-sm">
               Get expert advice on how to care for your {plant.name}
@@ -202,117 +242,115 @@ const PlantDetails = () => {
         </div>
       </div>
 
-      {/* Consultation Modal */}
-      {showModal && (
-        <div className="modal modal-open">
-          <div className="modal-box max-w-2xl">
-            <h3 className="font-bold text-2xl text-[#2F5233] mb-4">
-              Book Consultation for {plant.name}
-            </h3>
-            <p className="text-gray-600 mb-6">
-              Fill in your details and our plant experts will contact you soon!
-            </p>
+      {/* Consultation Form Section */}
+      <div id="consultation-form" className="bg-white py-16">
+        <div className="container mx-auto px-4">
+          <div className="max-w-3xl mx-auto">
+            <div className="text-center mb-10">
+              <h2 className="text-3xl md:text-4xl font-bold text-[#2F5233] mb-4 font-serif">
+                Book Consultation for {plant.name}
+              </h2>
+              <p className="text-gray-600 text-lg">
+                Fill in your details and our plant experts will contact you soon!
+              </p>
+            </div>
 
-            <form onSubmit={handleSubmit}>
-              {/* Name */}
-              <div className="form-control mb-4">
-                <label className="label">
-                  <span className="label-text font-medium">Name *</span>
-                </label>
-                <input
-                  type="text"
-                  name="name"
-                  value={formData.name}
-                  onChange={handleInputChange}
-                  placeholder="Your full name"
-                  className="input input-bordered focus:outline-none focus:border-[#4A7C59]"
-                  required
-                />
-              </div>
+            <div className="bg-white shadow-2xl rounded-2xl p-8 border border-gray-100">
+              <form onSubmit={handleSubmit}>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  {/* Name */}
+                  <div className="form-control">
+                    <label className="label">
+                      <span className="label-text font-semibold text-gray-700">Name *</span>
+                    </label>
+                    <input
+                      type="text"
+                      name="name"
+                      value={formData.name}
+                      onChange={handleInputChange}
+                      placeholder="Your full name"
+                      className="input input-bordered w-full bg-white text-gray-900 focus:outline-none focus:border-[#4A7C59] focus:ring-2 focus:ring-[#4A7C59]"
+                      required
+                    />
+                  </div>
 
-              {/* Email */}
-              <div className="form-control mb-4">
-                <label className="label">
-                  <span className="label-text font-medium">Email *</span>
-                </label>
-                <input
-                  type="email"
-                  name="email"
-                  value={formData.email}
-                  onChange={handleInputChange}
-                  placeholder="your.email@example.com"
-                  className="input input-bordered focus:outline-none focus:border-[#4A7C59]"
-                  required
-                />
-              </div>
+                  {/* Email */}
+                  <div className="form-control">
+                    <label className="label">
+                      <span className="label-text font-semibold text-gray-700">Email *</span>
+                    </label>
+                    <input
+                      type="email"
+                      name="email"
+                      value={formData.email}
+                      onChange={handleInputChange}
+                      placeholder="your.email@example.com"
+                      className="input input-bordered w-full bg-white text-gray-900 focus:outline-none focus:border-[#4A7C59] focus:ring-2 focus:ring-[#4A7C59]"
+                      required
+                    />
+                  </div>
 
-              {/* Phone */}
-              <div className="form-control mb-4">
-                <label className="label">
-                  <span className="label-text font-medium">Phone Number *</span>
-                </label>
-                <input
-                  type="tel"
-                  name="phone"
-                  value={formData.phone}
-                  onChange={handleInputChange}
-                  placeholder="10-digit mobile number"
-                  className="input input-bordered focus:outline-none focus:border-[#4A7C59]"
-                  required
-                />
-              </div>
+                  {/* Phone */}
+                  <div className="form-control">
+                    <label className="label">
+                      <span className="label-text font-semibold text-gray-700">Phone Number *</span>
+                    </label>
+                    <input
+                      type="tel"
+                      name="phone"
+                      value={formData.phone}
+                      onChange={handleInputChange}
+                      placeholder="10-digit mobile number"
+                      className="input input-bordered w-full bg-white text-gray-900 focus:outline-none focus:border-[#4A7C59] focus:ring-2 focus:ring-[#4A7C59]"
+                      required
+                    />
+                  </div>
 
-              {/* Preferred Date */}
-              <div className="form-control mb-4">
-                <label className="label">
-                  <span className="label-text font-medium">Preferred Date *</span>
-                </label>
-                <input
-                  type="date"
-                  name="preferredDate"
-                  value={formData.preferredDate}
-                  onChange={handleInputChange}
-                  min={new Date().toISOString().split('T')[0]}
-                  className="input input-bordered focus:outline-none focus:border-[#4A7C59]"
-                  required
-                />
-              </div>
+                  {/* Preferred Date */}
+                  <div className="form-control">
+                    <label className="label">
+                      <span className="label-text font-semibold text-gray-700">Preferred Date *</span>
+                    </label>
+                    <input
+                      type="date"
+                      name="preferredDate"
+                      value={formData.preferredDate}
+                      onChange={handleInputChange}
+                      min={new Date().toISOString().split('T')[0]}
+                      className="input input-bordered w-full bg-white text-gray-900 focus:outline-none focus:border-[#4A7C59] focus:ring-2 focus:ring-[#4A7C59]"
+                      required
+                    />
+                  </div>
+                </div>
 
-              {/* Message */}
-              <div className="form-control mb-6">
-                <label className="label">
-                  <span className="label-text font-medium">Message (Optional)</span>
-                </label>
-                <textarea
-                  name="message"
-                  value={formData.message}
-                  onChange={handleInputChange}
-                  placeholder="Any specific questions or concerns?"
-                  className="textarea textarea-bordered h-24 focus:outline-none focus:border-[#4A7C59]"
-                />
-              </div>
+                {/* Message - Full Width */}
+                <div className="form-control mt-6">
+                  <label className="label">
+                    <span className="label-text font-semibold text-gray-700">Message (Optional)</span>
+                  </label>
+                  <textarea
+                    name="message"
+                    value={formData.message}
+                    onChange={handleInputChange}
+                    placeholder="Any specific questions or concerns?"
+                    className="textarea textarea-bordered h-32 w-full bg-white text-gray-900 focus:outline-none focus:border-[#4A7C59] focus:ring-2 focus:ring-[#4A7C59]"
+                  />
+                </div>
 
-              {/* Buttons */}
-              <div className="modal-action">
-                <button
-                  type="button"
-                  onClick={() => setShowModal(false)}
-                  className="btn btn-outline"
-                >
-                  Cancel
-                </button>
-                <button
-                  type="submit"
-                  className="btn bg-[#4A7C59] hover:bg-[#2F5233] text-white"
-                >
-                  Book Consultation
-                </button>
-              </div>
-            </form>
+                {/* Submit Button */}
+                <div className="mt-8">
+                  <button
+                    type="submit"
+                    className="btn bg-[#4A7C59] hover:bg-[#2F5233] text-white text-lg w-full border-none"
+                  >
+                    Book Consultation
+                  </button>
+                </div>
+              </form>
+            </div>
           </div>
-          <div className="modal-backdrop" onClick={() => setShowModal(false)}></div>
         </div>
-      )}
+      </div>
     </div>
   );
 };

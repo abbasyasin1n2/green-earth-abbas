@@ -213,6 +213,9 @@ const Home = () => {
                     src={plant.image}
                     alt={plant.name}
                     className="w-full h-full object-cover hover:scale-110 transition-transform duration-500"
+                    onError={(e) => {
+                      e.target.src = 'https://via.placeholder.com/400x300?text=Plant+Image';
+                    }}
                   />
                   {plant.inStock && (
                     <div className="badge badge-success absolute top-4 right-4 text-white font-semibold">
@@ -394,6 +397,9 @@ const Home = () => {
                 src="/src/assets/plant_images/Aglaonema_red.jpg"
                 alt="Plant of the Week"
                 className="relative rounded-2xl shadow-2xl w-full h-[500px] object-cover"
+                onError={(e) => {
+                  e.target.src = 'https://via.placeholder.com/500x500?text=Featured+Plant';
+                }}
               />
             </div>
           </div>

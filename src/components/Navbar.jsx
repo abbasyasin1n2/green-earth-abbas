@@ -25,7 +25,7 @@ const Navbar = () => {
   };
 
   return (
-    <div className="sticky top-0 z-50 bg-base-100 border-b border-gray-100 shadow-sm">
+    <div className="fixed top-0 left-0 right-0 z-50 bg-base-100 border-b border-gray-100 shadow-sm">
       <div className="navbar container mx-auto">
         {/* Navbar Start - Logo + Mobile Menu */}
         <div className="navbar-start">

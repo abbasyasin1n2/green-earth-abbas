@@ -48,12 +48,14 @@ const Signup = () => {
       return;
     }
 
-    // Validate photo URL (basic check)
-    try {
-      new URL(formData.photoURL);
-    } catch {
-      toast.error('Please enter a valid photo URL');
-      return;
+    // Validate photo URL only if provided
+    if (formData.photoURL.trim()) {
+      try {
+        new URL(formData.photoURL);
+      } catch {
+        toast.error('Please enter a valid photo URL');
+        return;
+      }
     }
 
     setLoading(true);
@@ -62,8 +64,11 @@ const Signup = () => {
       // Create user account
       await createUser(formData.email, formData.password);
       
-      // Update profile with name and photo
-      await updateUserProfile(formData.name, formData.photoURL);
+      // Update profile with name and photo (use null if photoURL is empty)
+      await updateUserProfile(
+        formData.name, 
+        formData.photoURL.trim() || null
+      );
       
       toast.success('Account created successfully! Welcome to GreenNest 🌿');
       navigate('/');
@@ -163,17 +168,23 @@ const Signup = () => {
             {/* Photo URL Field */}
             <div className="form-control">
               <label className="label">
-                <span className="label-text font-semibold text-gray-700">Photo URL</span>
+                <span className="label-text font-semibold text-gray-700">
+                  Photo URL <span className="text-gray-400 text-sm font-normal">(Optional)</span>
+                </span>
               </label>
               <input
                 type="url"
                 name="photoURL"
-                placeholder="https://example.com/photo.jpg"
+                placeholder="https://example.com/photo.jpg (optional)"
                 className="input input-bordered w-full focus:outline-none focus:ring-2 focus:ring-[#4A7C59]"
                 value={formData.photoURL}
                 onChange={handleChange}
-                required
               />
+              <label className="label">
+                <span className="label-text-alt text-gray-500">
+                  Leave blank to use a default avatar
+                </span>
+              </label>
             </div>
 
             {/* Password Field */}

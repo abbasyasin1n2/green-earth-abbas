@@ -5,6 +5,7 @@ import Plants from '../pages/Plants';
 import PlantDetails from '../pages/PlantDetails';
 import Login from '../pages/Login';
 import Signup from '../pages/Signup';
+import ForgotPassword from '../pages/ForgotPassword';
 import MyProfile from '../pages/MyProfile';
 import ErrorPage from '../pages/ErrorPage';
 import PrivateRoute from './PrivateRoute';
@@ -38,6 +39,10 @@ const router = createBrowserRouter([
       {
         path: '/signup',
         element: <Signup />,
+      },
+      {
+        path: '/forgot-password',
+        element: <ForgotPassword />,
       },
       {
         path: '/profile',
