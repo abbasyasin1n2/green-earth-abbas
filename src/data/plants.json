@@ -1,0 +1,111 @@
+[
+  {
+    "plantId": 1,
+    "plantName": "Chinese Tagar (Crape Jasmine)",
+    "category": "Flowering Plant",
+    "price": 24.99,
+    "rating": 4.7,
+    "availableStock": 15,
+    "careLevel": "Moderate",
+    "description": "Chinese Tagar or Crape Jasmine plant, which is a flowering shrub known for its fragrant white blossoms. It is also called Mini Tagar or Chandni and is suitable for tropical and subtropical climates, can be grown indoors, and is popular for both ornamental and medicinal purposes.",
+    "image": "/src/assets/plant_images/Kalpataru_Chinese_Tagar.jpg",
+    "providerName": "Tropical Flora Co."
+  },
+  {
+    "plantId": 2,
+    "plantName": "Dracaena Surculosa",
+    "category": "Air Purifier",
+    "price": 28.50,
+    "rating": 4.8,
+    "availableStock": 12,
+    "careLevel": "Easy",
+    "description": "Dracaena surculosa, called the gold dust dracaena and spotted dracaena, is a species of flowering plant in the family Asparagaceae, native to west and west-central tropical Africa, from Guinea to the Republic of the Congo. Known for its beautiful spotted foliage and air-purifying properties.",
+    "image": "/src/assets/plant_images/Dracaena_surculosa.jpg",
+    "providerName": "UrbanGreen Studio"
+  },
+  {
+    "plantId": 3,
+    "plantName": "Murraya Paniculata (Orange Jasmine)",
+    "category": "Flowering Plant",
+    "price": 32.00,
+    "rating": 4.6,
+    "availableStock": 8,
+    "careLevel": "Easy",
+    "description": "Murraya paniculata, commonly known as orange jasmine, orange jessamine, china box, cosmetic barktree, or mock orange, is a species of shrub or small tree in the family Rutaceae and is native to South Asia, Southeast Asia and Australia. Features fragrant white flowers and aromatic leaves.",
+    "image": "/src/assets/plant_images/Murraya_paniculata.jpg",
+    "providerName": "Asian Gardens Ltd."
+  },
+  {
+    "plantId": 4,
+    "plantName": "Chinese Money Plant",
+    "category": "Air Purifier",
+    "price": 19.99,
+    "rating": 4.9,
+    "availableStock": 20,
+    "careLevel": "Easy",
+    "description": "Chinese Money plant is an excellent indoor plant due to its ability to eliminate bad air. It is an Air Purifier plant as it efficiently removes indoor pollutants. This plant with its beautiful coin shaped leaves markings is believed to bring good luck & prosperity to your home according to Feng Shui. Perfect for living room, balcony, bedroom or in hanging baskets.",
+    "image": "/src/assets/plant_images/Chinese_Money_Plant.jpg",
+    "providerName": "Lucky Plant Co."
+  },
+  {
+    "plantId": 5,
+    "plantName": "Lucky Bamboo (2-Layer)",
+    "category": "Lucky Plant",
+    "price": 15.99,
+    "rating": 4.8,
+    "availableStock": 25,
+    "careLevel": "Easy",
+    "description": "Premium Lucky Bamboo: A 2-layer bamboo plant symbolising prosperity, good luck, and positive energy. Perfect indoor plant for home, office, or gifting that thrives in low or bright light. Easy to care for and brings natural elegance to any space.",
+    "image": "/src/assets/plant_images/lucky_bamboo.jpg",
+    "providerName": "Zen Garden Supply"
+  },
+  {
+    "plantId": 6,
+    "plantName": "Aglaonema Red (Chinese Evergreen)",
+    "category": "Air Purifier",
+    "price": 26.99,
+    "rating": 4.9,
+    "availableStock": 14,
+    "careLevel": "Easy",
+    "description": "Aglaonema Red is also one of the most stylish houseplant and needs minimal care and can thrive extremely well in low light levels. With its colorful foliage this plant is a perfect home-decor plant. A natural air-purifier and mood booster, this lipstick plant is a top pick for anyone curating their plants for home garden collection or upgrading their interior aesthetics.",
+    "image": "/src/assets/plant_images/Aglaonema_red.jpg",
+    "providerName": "UrbanGreen Studio"
+  },
+  {
+    "plantId": 7,
+    "plantName": "Philodendron White Princess",
+    "category": "Air Purifier",
+    "price": 45.00,
+    "rating": 4.7,
+    "availableStock": 6,
+    "careLevel": "Moderate",
+    "description": "Philodendron White Princess Houseplants are known for their ability to Air Purifying by absorbing harmful toxins such as formaldehyde, benzene, and trichloroethylene. They also release oxygen during photosynthesis, which can enhance air quality indoors. Features stunning white variegation on glossy green leaves.",
+    "image": "/src/assets/plant_images/Philodendron_White_Princess.jpg",
+    "providerName": "Rare Plants Collection"
+  },
+  {
+    "plantId": 8,
+    "plantName": "Moon Cactus (Hibotan)",
+    "category": "Succulent",
+    "price": 12.99,
+    "rating": 4.5,
+    "availableStock": 18,
+    "careLevel": "Easy",
+    "description": "Moon cactus plants are known as Gymnocalycium mihanovichii, Hibotan cactus, Chin Cactus, Plaid Cactus, Ruby Ball, Hibotan Cacti, Red Cap, or Red Hibotan, is a species of cactus from the Cactaceae family. You can place This Real dekorly plant anywhere in your Place for a touch of greenery and decorate your place. Low maintenance and colorful.",
+    "image": "/src/assets/plant_images/moon_cactus.jpg",
+    "providerName": "Desert Flora"
+  },
+  {
+    "plantId": 9,
+    "plantName": "Peperomia Plant",
+    "category": "Air Purifier",
+    "price": 16.99,
+    "rating": 4.8,
+    "availableStock": 22,
+    "careLevel": "Easy",
+    "description": "Peperomia plant is a true air-purifying CHAMPION, ridding your space of toxins & infusing it with CRISP, OXYGENATED air. Say goodbye to stale surroundings. With attractive leaves and compact size, perfect for desks, shelves, and small spaces. Very easy to care for and propagate.",
+    "image": "/src/assets/plant_images/Peperomia.jpg",
+    "providerName": "Green Living Co."
+  }
+]
+
