@@ -124,14 +124,14 @@ const MyProfile = () => {
                 {!isEditing ? (
                   <button
                     onClick={() => setIsEditing(true)}
-                    className="btn bg-[#4A7C59] hover:bg-[#2F5233] text-white"
+                    className="btn bg-[#4A7C59] hover:bg-[#2F5233] text-white rounded-lg normal-case inline-flex items-center gap-2"
                   >
                     <FaEdit /> Edit Profile
                   </button>
                 ) : (
                   <button
                     onClick={handleCancel}
-                    className="btn btn-outline border-gray-400 text-gray-600 hover:bg-gray-100"
+                    className="btn btn-outline border-gray-400 text-gray-600 hover:bg-gray-100 rounded-lg normal-case inline-flex items-center gap-2"
                   >
                     <FaTimes /> Cancel
                   </button>
@@ -192,7 +192,7 @@ const MyProfile = () => {
                       value={formData.displayName}
                       onChange={handleInputChange}
                       placeholder="Enter your display name"
-                      className="input input-bordered focus:outline-none focus:border-[#4A7C59]"
+                      className="input input-bordered bg-gray-50 text-gray-900 placeholder:text-gray-400 focus:outline-none focus:border-[#4A7C59] focus:ring-2 focus:ring-[#4A7C59] rounded-lg"
                       required
                       minLength={3}
                     />
@@ -217,7 +217,7 @@ const MyProfile = () => {
                       value={formData.photoURL}
                       onChange={handleInputChange}
                       placeholder="https://example.com/your-photo.jpg"
-                      className="input input-bordered focus:outline-none focus:border-[#4A7C59]"
+                      className="input input-bordered bg-gray-50 text-gray-900 placeholder:text-gray-400 focus:outline-none focus:border-[#4A7C59] focus:ring-2 focus:ring-[#4A7C59] rounded-lg"
                     />
                     <label className="label">
                       <span className="label-text-alt text-gray-500">
@@ -238,7 +238,7 @@ const MyProfile = () => {
                       type="email"
                       value={user.email}
                       disabled
-                      className="input input-bordered bg-gray-100 cursor-not-allowed"
+                      className="input input-bordered bg-gray-100 cursor-not-allowed rounded-lg"
                     />
                     <label className="label">
                       <span className="label-text-alt text-gray-500">
@@ -252,14 +252,14 @@ const MyProfile = () => {
                     <button
                       type="button"
                       onClick={handleCancel}
-                      className="btn btn-outline"
+                      className="btn btn-outline rounded-lg normal-case"
                       disabled={loading}
                     >
                       Cancel
                     </button>
                     <button
                       type="submit"
-                      className="btn bg-[#4A7C59] hover:bg-[#2F5233] text-white"
+                      className="btn bg-[#4A7C59] hover:bg-[#2F5233] text-white rounded-lg normal-case"
                       disabled={loading}
                     >
                       {loading ? (

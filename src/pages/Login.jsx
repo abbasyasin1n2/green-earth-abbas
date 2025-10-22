@@ -105,7 +105,7 @@ const Login = () => {
               <input
                 type="email"
                 placeholder="Enter your email"
-                className="input input-bordered w-full bg-white text-gray-900 focus:outline-none focus:ring-2 focus:ring-[#4A7C59]"
+                className="input input-bordered w-full bg-gray-50 text-gray-900 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-[#4A7C59] rounded-lg"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 required
@@ -121,7 +121,7 @@ const Login = () => {
                 <input
                   type={showPassword ? 'text' : 'password'}
                   placeholder="Enter your password"
-                  className="input input-bordered w-full bg-white text-gray-900 pr-12 focus:outline-none focus:ring-2 focus:ring-[#4A7C59]"
+                  className="input input-bordered w-full bg-gray-50 text-gray-900 placeholder:text-gray-400 pr-12 focus:outline-none focus:ring-2 focus:ring-[#4A7C59] rounded-lg"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   required
@@ -150,7 +150,7 @@ const Login = () => {
             <button
               type="submit"
               disabled={loading}
-              className="btn w-full bg-[#4A7C59] hover:bg-[#2F5233] text-white border-none"
+              className="btn w-full bg-[#4A7C59] hover:bg-[#2F5233] text-white border-none normal-case text-base rounded-lg"
             >
               {loading ? (
                 <>
@@ -170,10 +170,10 @@ const Login = () => {
           <button
             onClick={handleGoogleSignIn}
             disabled={loading}
-            className="btn w-full bg-white hover:bg-gray-50 text-gray-700 border-2 border-gray-300"
+            className="btn w-full bg-amber-400 hover:bg-amber-500 text-gray-900 font-semibold border-none normal-case text-base flex items-center justify-center gap-3 rounded-lg"
           >
-            <FaGoogle className="text-red-500" size={20} />
-            Sign in with Google
+            <FaGoogle className="text-red-600" size={20} />
+            <span>Sign in with Google</span>
           </button>
 
           {/* Signup Link */}

@@ -112,13 +112,13 @@ const PlantDetails = () => {
           <div className="flex gap-4 justify-center">
             <button
               onClick={() => navigate('/plants')}
-              className="btn bg-[#4A7C59] hover:bg-[#2F5233] text-white"
+              className="btn bg-[#4A7C59] hover:bg-[#2F5233] text-white rounded-lg normal-case"
             >
               Browse All Plants
             </button>
             <button
               onClick={() => navigate('/')}
-              className="btn btn-outline border-[#4A7C59] text-[#4A7C59] hover:bg-[#4A7C59] hover:text-white"
+              className="btn btn-outline border-[#4A7C59] text-[#4A7C59] hover:bg-[#4A7C59] hover:text-white rounded-lg normal-case"
             >
               Go Home
             </button>
@@ -207,7 +207,7 @@ const PlantDetails = () => {
             {/* Book Consultation Button */}
             <a
               href="#consultation-form"
-              className="btn bg-[#4A7C59] hover:bg-[#2F5233] text-white text-lg w-full mb-4"
+              className="btn bg-[#4A7C59] hover:bg-[#2F5233] text-white text-lg w-full mb-4 border-none normal-case rounded-lg"
             >
               Book Free Consultation
             </a>
@@ -269,7 +269,7 @@ const PlantDetails = () => {
                       value={formData.name}
                       onChange={handleInputChange}
                       placeholder="Your full name"
-                      className="input input-bordered w-full bg-white text-gray-900 focus:outline-none focus:border-[#4A7C59] focus:ring-2 focus:ring-[#4A7C59]"
+                      className="input input-bordered w-full bg-gray-50 text-gray-900 placeholder:text-gray-400 focus:outline-none focus:border-[#4A7C59] focus:ring-2 focus:ring-[#4A7C59] rounded-lg"
                       required
                     />
                   </div>
@@ -285,7 +285,7 @@ const PlantDetails = () => {
                       value={formData.email}
                       onChange={handleInputChange}
                       placeholder="your.email@example.com"
-                      className="input input-bordered w-full bg-white text-gray-900 focus:outline-none focus:border-[#4A7C59] focus:ring-2 focus:ring-[#4A7C59]"
+                      className="input input-bordered w-full bg-gray-50 text-gray-900 placeholder:text-gray-400 focus:outline-none focus:border-[#4A7C59] focus:ring-2 focus:ring-[#4A7C59] rounded-lg"
                       required
                     />
                   </div>
@@ -301,7 +301,7 @@ const PlantDetails = () => {
                       value={formData.phone}
                       onChange={handleInputChange}
                       placeholder="10-digit mobile number"
-                      className="input input-bordered w-full bg-white text-gray-900 focus:outline-none focus:border-[#4A7C59] focus:ring-2 focus:ring-[#4A7C59]"
+                      className="input input-bordered w-full bg-gray-50 text-gray-900 placeholder:text-gray-400 focus:outline-none focus:border-[#4A7C59] focus:ring-2 focus:ring-[#4A7C59] rounded-lg"
                       required
                     />
                   </div>
@@ -317,7 +317,7 @@ const PlantDetails = () => {
                       value={formData.preferredDate}
                       onChange={handleInputChange}
                       min={new Date().toISOString().split('T')[0]}
-                      className="input input-bordered w-full bg-white text-gray-900 focus:outline-none focus:border-[#4A7C59] focus:ring-2 focus:ring-[#4A7C59]"
+                      className="input input-bordered w-full bg-gray-50 text-gray-900 placeholder:text-gray-400 focus:outline-none focus:border-[#4A7C59] focus:ring-2 focus:ring-[#4A7C59] rounded-lg"
                       required
                     />
                   </div>
@@ -333,7 +333,7 @@ const PlantDetails = () => {
                     value={formData.message}
                     onChange={handleInputChange}
                     placeholder="Any specific questions or concerns?"
-                    className="textarea textarea-bordered h-32 w-full bg-white text-gray-900 focus:outline-none focus:border-[#4A7C59] focus:ring-2 focus:ring-[#4A7C59]"
+                    className="textarea textarea-bordered h-32 w-full bg-gray-50 text-gray-900 placeholder:text-gray-400 focus:outline-none focus:border-[#4A7C59] focus:ring-2 focus:ring-[#4A7C59] rounded-lg"
                   />
                 </div>
 
@@ -341,7 +341,7 @@ const PlantDetails = () => {
                 <div className="mt-8">
                   <button
                     type="submit"
-                    className="btn bg-[#4A7C59] hover:bg-[#2F5233] text-white text-lg w-full border-none"
+                    className="btn bg-[#4A7C59] hover:bg-[#2F5233] text-white text-lg w-full border-none normal-case rounded-lg"
                   >
                     Book Consultation
                   </button>

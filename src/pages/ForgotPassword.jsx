@@ -85,7 +85,7 @@ const ForgotPassword = () => {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="Enter your email"
-                className="input input-bordered w-full bg-white text-gray-900 focus:outline-none focus:ring-2 focus:ring-[#4A7C59] focus:border-[#4A7C59]"
+                className="input input-bordered w-full bg-gray-50 text-gray-900 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-[#4A7C59] focus:border-[#4A7C59] rounded-lg"
                 required
                 disabled={loading}
               />
@@ -95,7 +95,7 @@ const ForgotPassword = () => {
             <button
               type="submit"
               disabled={loading}
-              className="btn bg-[#4A7C59] hover:bg-[#2F5233] text-white w-full border-none"
+              className="btn bg-[#4A7C59] hover:bg-[#2F5233] text-white w-full border-none normal-case text-base rounded-lg"
             >
               {loading ? (
                 <>
@@ -115,10 +115,10 @@ const ForgotPassword = () => {
           <div className="text-center">
             <Link
               to="/login"
-              className="btn btn-outline border-[#4A7C59] text-[#4A7C59] hover:bg-[#4A7C59] hover:text-white w-full"
+              className="btn btn-outline border-[#4A7C59] text-[#4A7C59] hover:bg-[#4A7C59] hover:text-white w-full normal-case text-base flex items-center justify-center gap-2 rounded-lg"
             >
               <FaArrowLeft />
-              Back to Login
+              <span>Back to Login</span>
             </Link>
           </div>
         </div>

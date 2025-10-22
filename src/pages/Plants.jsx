@@ -79,7 +79,7 @@ const Plants = () => {
                 placeholder="Search plants by name or scientific name..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                className="input input-bordered w-full pl-12 focus:outline-none focus:border-[#4A7C59]"
+                className="input input-bordered w-full pl-12 bg-white text-gray-900 placeholder:text-gray-400 focus:outline-none focus:border-[#4A7C59] focus:ring-2 focus:ring-[#4A7C59] rounded-lg"
               />
               <FaSearch className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400" />
             </div>
@@ -139,7 +139,7 @@ const Plants = () => {
             <div className="flex items-end">
               <button
                 onClick={resetFilters}
-                className="btn btn-outline w-full border-[#4A7C59] text-[#4A7C59] hover:bg-[#4A7C59] hover:text-white hover:border-[#4A7C59]"
+                className="btn btn-outline w-full border-[#4A7C59] text-[#4A7C59] hover:bg-[#4A7C59] hover:text-white hover:border-[#4A7C59] rounded-lg normal-case inline-flex items-center justify-center gap-2"
               >
                 <FaFilter /> Reset Filters
               </button>
@@ -206,7 +206,7 @@ const Plants = () => {
                   <div className="card-actions justify-end mt-4">
                     <Link
                       to={`/plant/${plant.id}`}
-                      className="btn bg-[#4A7C59] hover:bg-[#2F5233] text-white w-full"
+                      className="btn bg-[#4A7C59] hover:bg-[#2F5233] text-white w-full rounded-lg normal-case"
                     >
                       View Details
                     </Link>
@@ -220,7 +220,7 @@ const Plants = () => {
             <div className="text-6xl mb-4">🌱</div>
             <h3 className="text-2xl font-bold text-gray-700 mb-2">No plants found</h3>
             <p className="text-gray-500 mb-4">Try adjusting your filters or search term</p>
-            <button onClick={resetFilters} className="btn bg-[#4A7C59] hover:bg-[#2F5233] text-white">
+            <button onClick={resetFilters} className="btn bg-[#4A7C59] hover:bg-[#2F5233] text-white rounded-lg normal-case">
               Reset Filters
             </button>
           </div>

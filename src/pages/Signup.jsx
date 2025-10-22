@@ -142,7 +142,7 @@ const Signup = () => {
                 type="text"
                 name="name"
                 placeholder="Enter your full name"
-                className="input input-bordered w-full focus:outline-none focus:ring-2 focus:ring-[#4A7C59]"
+                className="input input-bordered w-full bg-gray-50 text-gray-900 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-[#4A7C59] rounded-lg"
                 value={formData.name}
                 onChange={handleChange}
                 required
@@ -158,7 +158,7 @@ const Signup = () => {
                 type="email"
                 name="email"
                 placeholder="Enter your email"
-                className="input input-bordered w-full focus:outline-none focus:ring-2 focus:ring-[#4A7C59]"
+                className="input input-bordered w-full bg-gray-50 text-gray-900 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-[#4A7C59] rounded-lg"
                 value={formData.email}
                 onChange={handleChange}
                 required
@@ -176,7 +176,7 @@ const Signup = () => {
                 type="url"
                 name="photoURL"
                 placeholder="https://example.com/photo.jpg (optional)"
-                className="input input-bordered w-full focus:outline-none focus:ring-2 focus:ring-[#4A7C59]"
+                className="input input-bordered w-full bg-gray-50 text-gray-900 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-[#4A7C59] rounded-lg"
                 value={formData.photoURL}
                 onChange={handleChange}
               />
@@ -197,7 +197,7 @@ const Signup = () => {
                   type={showPassword ? 'text' : 'password'}
                   name="password"
                   placeholder="Create a password"
-                  className="input input-bordered w-full pr-12 focus:outline-none focus:ring-2 focus:ring-[#4A7C59]"
+                  className="input input-bordered w-full bg-gray-50 text-gray-900 placeholder:text-gray-400 pr-12 focus:outline-none focus:ring-2 focus:ring-[#4A7C59] rounded-lg"
                   value={formData.password}
                   onChange={handleChange}
                   required
@@ -252,7 +252,7 @@ const Signup = () => {
             <button
               type="submit"
               disabled={loading || !isPasswordValid}
-              className="btn w-full bg-[#4A7C59] hover:bg-[#2F5233] text-white border-none disabled:bg-gray-400"
+              className="btn w-full bg-[#4A7C59] hover:bg-[#2F5233] text-white border-none disabled:bg-gray-400 normal-case text-base rounded-lg"
             >
               {loading ? (
                 <>
@@ -272,10 +272,10 @@ const Signup = () => {
           <button
             onClick={handleGoogleSignIn}
             disabled={loading}
-            className="btn w-full bg-white hover:bg-gray-50 text-gray-700 border-2 border-gray-300"
+            className="btn w-full bg-amber-400 hover:bg-amber-500 text-gray-900 font-semibold border-none normal-case text-base flex items-center justify-center gap-3 rounded-lg"
           >
-            <FaGoogle className="text-red-500" size={20} />
-            Sign up with Google
+            <FaGoogle className="text-red-600" size={20} />
+            <span>Sign up with Google</span>
           </button>
 
           {/* Login Link */}

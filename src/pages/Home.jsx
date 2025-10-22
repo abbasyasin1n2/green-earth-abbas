@@ -126,9 +126,9 @@ const Home = () => {
                   </p>
                   <Link
                     to="/plants"
-                    className="btn bg-[#4A7C59] hover:bg-[#2F5233] text-white border-none px-8 py-4 text-lg"
+                    className="btn bg-[#4A7C59] hover:bg-[#2F5233] text-white border-none px-8 py-4 text-lg rounded-lg normal-case inline-flex items-center gap-2"
                   >
-                    Shop Now <FaArrowRight className="ml-2" />
+                    Shop Now <FaArrowRight />
                   </Link>
                 </div>
               </div>
@@ -152,9 +152,9 @@ const Home = () => {
                   </p>
                   <Link
                     to="/plants"
-                    className="btn bg-[#4A7C59] hover:bg-[#2F5233] text-white border-none px-8 py-4 text-lg"
+                    className="btn bg-[#4A7C59] hover:bg-[#2F5233] text-white border-none px-8 py-4 text-lg rounded-lg normal-case inline-flex items-center gap-2"
                   >
-                    Explore Plants <FaArrowRight className="ml-2" />
+                    Explore Plants <FaArrowRight />
                   </Link>
                 </div>
               </div>
@@ -178,9 +178,9 @@ const Home = () => {
                   </p>
                   <Link
                     to="/plants"
-                    className="btn bg-[#4A7C59] hover:bg-[#2F5233] text-white border-none px-8 py-4 text-lg"
+                    className="btn bg-[#4A7C59] hover:bg-[#2F5233] text-white border-none px-8 py-4 text-lg rounded-lg normal-case inline-flex items-center gap-2"
                   >
-                    Get Started <FaArrowRight className="ml-2" />
+                    Get Started <FaArrowRight />
                   </Link>
                 </div>
               </div>
@@ -259,7 +259,7 @@ const Home = () => {
                   <div className="card-actions justify-end mt-4">
                     <Link
                       to={`/plant/${plant.id}`}
-                      className="btn bg-[#4A7C59] hover:bg-[#2F5233] text-white w-full"
+                      className="btn bg-[#4A7C59] hover:bg-[#2F5233] text-white w-full rounded-lg normal-case"
                     >
                       View Details
                     </Link>
@@ -272,9 +272,9 @@ const Home = () => {
           <div className="text-center mt-12">
             <Link
               to="/plants"
-              className="btn bg-[#4A7C59] hover:bg-[#2F5233] text-white border-none px-8"
+              className="btn bg-[#4A7C59] hover:bg-[#2F5233] text-white border-none px-8 rounded-lg normal-case inline-flex items-center gap-2"
             >
-              View All Plants <FaArrowRight className="ml-2" />
+              View All Plants <FaArrowRight />
             </Link>
           </div>
         </div>
@@ -419,9 +419,9 @@ const Home = () => {
             <input
               type="email"
               placeholder="Enter your email"
-              className="input input-bordered flex-1 bg-white"
+              className="input input-bordered flex-1 bg-white placeholder:text-gray-400"
             />
-            <button className="btn bg-[#2F5233] hover:bg-[#1a2e1a] text-white border-none px-8">
+            <button className="btn bg-[#2F5233] hover:bg-[#1a2e1a] text-white border-none px-8 rounded-lg normal-case">
               Subscribe
             </button>
           </div>
