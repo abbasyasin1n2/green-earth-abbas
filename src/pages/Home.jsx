@@ -205,36 +205,58 @@ const Home = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {topPlants.map((plant) => (
               <div
-                key={plant.plantId}
-                className="card bg-base-100 shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2"
+                key={plant.id}
+                className="card bg-base-100 shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-2"
               >
-                <figure className="px-0 pt-0 h-64 overflow-hidden">
+                <figure className="relative px-0 pt-0 h-64 overflow-hidden">
                   <img
                     src={plant.image}
-                    alt={plant.plantName}
+                    alt={plant.name}
                     className="w-full h-full object-cover hover:scale-110 transition-transform duration-500"
                   />
+                  {plant.inStock && (
+                    <div className="badge badge-success absolute top-4 right-4 text-white font-semibold">
+                      In Stock
+                    </div>
+                  )}
                 </figure>
                 <div className="card-body">
-                  <div className="flex justify-between items-start mb-2">
-                    <span className="badge badge-success text-white">{plant.category}</span>
-                    <span className="badge badge-outline">{plant.careLevel}</span>
-                  </div>
-                  <h3 className="card-title text-xl text-[#2F5233] font-serif">
-                    {plant.plantName}
-                  </h3>
+                  <h2 className="card-title text-[#2F5233] font-serif">
+                    {plant.name}
+                    <div className="badge badge-outline border-[#4A7C59] text-[#4A7C59]">
+                      {plant.category}
+                    </div>
+                  </h2>
+                  <p className="text-sm text-gray-500 italic">{plant.scientificName}</p>
                   <p className="text-gray-600 text-sm line-clamp-2">{plant.description}</p>
-                  <div className="flex items-center gap-1 my-2">
-                    {renderStars(plant.rating)}
-                    <span className="text-sm text-gray-600 ml-2">({plant.rating})</span>
+                  
+                  {/* Plant Info */}
+                  <div className="flex flex-wrap gap-2 mt-2">
+                    <div className="badge badge-sm bg-green-100 text-green-700 border-green-200">
+                      {plant.difficulty}
+                    </div>
+                    <div className="badge badge-sm bg-yellow-100 text-yellow-700 border-yellow-200">
+                      {plant.lightRequirement}
+                    </div>
                   </div>
-                  <div className="card-actions justify-between items-center mt-4">
-                    <span className="text-2xl font-bold text-[#4A7C59]">
-                      ${plant.price}
-                    </span>
+
+                  {/* Rating and Price */}
+                  <div className="flex items-center justify-between mt-4">
+                    <div className="flex items-center gap-1">
+                      <FaStar className="text-yellow-500" />
+                      <span className="font-bold">{plant.rating}</span>
+                      <span className="text-gray-500 text-sm">/5</span>
+                    </div>
+                    <div className="text-2xl font-bold text-[#2F5233]">
+                      ৳{plant.price}
+                    </div>
+                  </div>
+
+                  {/* View Details Button */}
+                  <div className="card-actions justify-end mt-4">
                     <Link
-                      to={`/plant/${plant.plantId}`}
-                      className="btn btn-sm bg-[#4A7C59] hover:bg-[#2F5233] text-white border-none"
+                      to={`/plant/${plant.id}`}
+                      className="btn bg-[#4A7C59] hover:bg-[#2F5233] text-white w-full"
                     >
                       View Details
                     </Link>
