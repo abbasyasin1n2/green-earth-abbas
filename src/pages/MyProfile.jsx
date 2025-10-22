@@ -98,12 +98,12 @@ const MyProfile = () => {
           </div>
 
           {/* Profile Card */}
-          <div className="card bg-base-100 shadow-2xl bg-yellow-100">
+          <div className="card bg-white shadow-2xl">
             <div className="card-body">
               {/* Profile Header with Avatar */}
-              <div className="flex flex-col items-center mb-8">
+              <div className="flex flex-col items-center mb-8 pt-6">
                 <div className="avatar mb-4">
-                  <div className="w-32 h-32 rounded-full ring-4 ring-[#4A7C59] ring-offset-4 overflow-hidden">
+                  <div className="w-32 h-32 rounded-full ring-4 ring-[#4A7C59] ring-offset-4 overflow-hidden bg-white">
                     <img
                       src={user.photoURL || 'https://via.placeholder.com/150?text=User'}
                       alt={user.displayName || 'User'}
@@ -114,10 +114,10 @@ const MyProfile = () => {
                     />
                   </div>
                 </div>
-                <h2 className="text-3xl font-bold text-[#2F5233]">
+                <h2 className="text-3xl font-bold text-[#2F5233] font-serif">
                   {user.displayName || 'Plant Lover'}
                 </h2>
-                <p className="text-gray-500">{user.email}</p>
+                <p className="text-gray-500 text-sm">{user.email}</p>
               </div>
 
               {/* Edit/View Mode Toggle */}
@@ -141,44 +141,44 @@ const MyProfile = () => {
 
               {/* Profile Information */}
               {!isEditing ? (
-                <div className="space-y-6">
+                <div className="space-y-4">
                   {/* Display Name */}
-                  <div className="flex items-start gap-4 p-4 bg-green-50 rounded-lg">
-                    <FaUser className="text-[#4A7C59] text-2xl mt-1" />
+                  <div className="flex items-start gap-4 p-5 bg-gradient-to-r from-green-50 to-emerald-50 rounded-xl border border-green-100 shadow-sm">
+                    <FaUser className="text-[#4A7C59] text-xl mt-1" />
                     <div className="flex-1">
-                      <p className="text-sm text-gray-500 mb-1">Display Name</p>
-                      <p className="text-lg font-semibold text-[#2F5233]">
+                      <p className="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-1">Display Name</p>
+                      <p className="text-lg font-bold text-[#2F5233]">
                         {user.displayName || 'Not set'}
                       </p>
                     </div>
                   </div>
 
                   {/* Email */}
-                  <div className="flex items-start gap-4 p-4 bg-blue-50 rounded-lg">
-                    <FaEnvelope className="text-blue-600 text-2xl mt-1" />
+                  <div className="flex items-start gap-4 p-5 bg-gradient-to-r from-green-50 to-emerald-50 rounded-xl border border-green-100 shadow-sm">
+                    <FaEnvelope className="text-[#4A7C59] text-xl mt-1" />
                     <div className="flex-1">
-                      <p className="text-sm text-gray-500 mb-1">Email Address</p>
-                      <p className="text-lg font-semibold text-[#2F5233]">
+                      <p className="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-1">Email Address</p>
+                      <p className="text-lg font-bold text-[#2F5233] break-all">
                         {user.email}
                       </p>
-                      <p className="text-xs text-gray-500 mt-1">Email cannot be changed</p>
+                      <p className="text-xs text-gray-400 mt-2 italic">Email cannot be changed</p>
                     </div>
                   </div>
 
                   {/* Photo URL */}
-                  <div className="flex items-start gap-4 p-4 bg-purple-50 rounded-lg">
-                    <FaCamera className="text-purple-600 text-2xl mt-1" />
+                  <div className="flex items-start gap-4 p-5 bg-gradient-to-r from-green-50 to-emerald-50 rounded-xl border border-green-100 shadow-sm">
+                    <FaCamera className="text-[#4A7C59] text-xl mt-1" />
                     <div className="flex-1">
-                      <p className="text-sm text-gray-500 mb-1">Profile Photo URL</p>
-                      <p className="text-sm text-[#2F5233] break-all">
-                        {user.photoURL || 'Default avatar'}
+                      <p className="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-1">Profile Photo URL</p>
+                      <p className="text-sm text-[#2F5233] break-all leading-relaxed">
+                        {user.photoURL || 'Using default avatar'}
                       </p>
                     </div>
                   </div>
                 </div>
               ) : (
                 // Edit Form
-                <form onSubmit={handleSubmit} className="space-y-6 bg-orange-50">
+                <form onSubmit={handleSubmit} className="space-y-6">
                   {/* Display Name Input */}
                   <div className="form-control">
                     <label className="label">
@@ -281,17 +281,17 @@ const MyProfile = () => {
           </div>
 
           {/* Additional Info Card */}
-          <div className="card bg-base-100 shadow-md mt-8 bg-yellow-100">
+          <div className="card bg-white shadow-md mt-8">
             <div className="card-body">
-              <h3 className="card-title text-[#2F5233]">Account Information</h3>
+              <h3 className="card-title text-[#2F5233] font-serif">Account Information</h3>
               <div className="divider"></div>
-              <div className="space-y-3 text-sm">
-                <div className="flex justify-between">
-                  <span className="text-gray-600">Account Status:</span>
-                  <span className="badge badge-success text-white">Active</span>
+              <div className="space-y-4 text-sm">
+                <div className="flex justify-between items-center py-3 border-b border-gray-100">
+                  <span className="text-gray-600 font-medium">Account Status:</span>
+                  <span className="badge bg-[#4A7C59] text-white border-none">Active</span>
                 </div>
-                <div className="flex justify-between">
-                  <span className="text-gray-600">Member Since:</span>
+                <div className="flex justify-between items-center py-3 border-b border-gray-100">
+                  <span className="text-gray-600 font-medium">Member Since:</span>
                   <span className="font-semibold text-[#2F5233]">
                     {user.metadata?.creationTime
                       ? new Date(user.metadata.creationTime).toLocaleDateString('en-US', {
@@ -302,8 +302,8 @@ const MyProfile = () => {
                       : 'N/A'}
                   </span>
                 </div>
-                <div className="flex justify-between">
-                  <span className="text-gray-600">Last Sign In:</span>
+                <div className="flex justify-between items-center py-3">
+                  <span className="text-gray-600 font-medium">Last Sign In:</span>
                   <span className="font-semibold text-[#2F5233]">
                     {user.metadata?.lastSignInTime
                       ? new Date(user.metadata.lastSignInTime).toLocaleDateString('en-US', {
