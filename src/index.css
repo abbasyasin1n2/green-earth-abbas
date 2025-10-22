@@ -1,2 +1,15 @@
 @import "tailwindcss";
-@plugin "daisyui";
+
+/* Custom base styles */
+@layer base {
+  body {
+    @apply bg-[#F5F1E8];
+  }
+}
+
+/* Custom component styles */
+@layer components {
+  .btn-primary {
+    @apply bg-[#4A7C59] hover:bg-[#2F5233] text-white;
+  }
+}
