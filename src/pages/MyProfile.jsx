@@ -98,15 +98,16 @@ const MyProfile = () => {
           </div>
 
           {/* Profile Card */}
-          <div className="card bg-base-100 shadow-2xl">
+          <div className="card bg-base-100 shadow-2xl bg-yellow-100">
             <div className="card-body">
               {/* Profile Header with Avatar */}
               <div className="flex flex-col items-center mb-8">
                 <div className="avatar mb-4">
-                  <div className="w-32 h-32 rounded-full ring-4 ring-[#4A7C59] ring-offset-4">
+                  <div className="w-32 h-32 rounded-full ring-4 ring-[#4A7C59] ring-offset-4 overflow-hidden">
                     <img
                       src={user.photoURL || 'https://via.placeholder.com/150?text=User'}
                       alt={user.displayName || 'User'}
+                      className="w-full h-full object-cover"
                       onError={(e) => {
                         e.target.src = 'https://via.placeholder.com/150?text=User';
                       }}
@@ -177,7 +178,7 @@ const MyProfile = () => {
                 </div>
               ) : (
                 // Edit Form
-                <form onSubmit={handleSubmit} className="space-y-6">
+                <form onSubmit={handleSubmit} className="space-y-6 bg-orange-50">
                   {/* Display Name Input */}
                   <div className="form-control">
                     <label className="label">
@@ -280,7 +281,7 @@ const MyProfile = () => {
           </div>
 
           {/* Additional Info Card */}
-          <div className="card bg-base-100 shadow-md mt-8">
+          <div className="card bg-base-100 shadow-md mt-8 bg-yellow-100">
             <div className="card-body">
               <h3 className="card-title text-[#2F5233]">Account Information</h3>
               <div className="divider"></div>

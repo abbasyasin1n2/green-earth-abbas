@@ -79,7 +79,7 @@ const Plants = () => {
                 placeholder="Search plants by name or scientific name..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                className="input input-bordered w-full pl-12 bg-white text-gray-900 placeholder:text-gray-400 focus:outline-none focus:border-[#4A7C59] focus:ring-2 focus:ring-[#4A7C59] rounded-lg"
+                className="input input-bordered w-full pl-12 bg-gray-50 text-gray-900 placeholder:text-gray-400 focus:outline-none focus:border-[#4A7C59] focus:ring-2 focus:ring-[#4A7C59] rounded-lg"
               />
               <FaSearch className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400" />
             </div>
