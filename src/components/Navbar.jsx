@@ -13,8 +13,8 @@ const Navbar = () => {
       .then(() => {
         setIsMobileMenuOpen(false);
       })
-      .catch((error) => {
-        console.error('Logout error:', error);
+      .catch(() => {
+        // Error handling
       });
   };
 

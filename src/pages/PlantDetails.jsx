@@ -43,17 +43,25 @@ const PlantDetails = () => {
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    setFormData(prev => ({ ...prev, [name]: value }));
+    
+    // For phone number, only allow digits and limit to 11 characters
+    if (name === 'phone') {
+      const digitsOnly = value.replace(/\D/g, '').slice(0, 11);
+      setFormData(prev => ({ ...prev, [name]: digitsOnly }));
+    } else {
+      setFormData(prev => ({ ...prev, [name]: value }));
+    }
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    // Validation
-    if (!formData.name || !formData.email || !formData.phone || !formData.preferredDate) {
-      toast.error('Please fill in all required fields!');
-      return;
-    }
+    try {
+      // Validation
+      if (!formData.name || !formData.email || !formData.phone || !formData.preferredDate) {
+        toast.error('Please fill in all required fields!');
+        return;
+      }
 
     // Email validation
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -62,27 +70,39 @@ const PlantDetails = () => {
       return;
     }
 
-    // Phone validation (basic)
-    const phoneRegex = /^[0-9]{10}$/;
+    // Phone validation (11 digits)
+    const phoneRegex = /^[0-9]{11}$/;
     if (!phoneRegex.test(formData.phone.replace(/\s/g, ''))) {
-      toast.error('Please enter a valid 10-digit phone number!');
+      toast.error('Please enter a valid 11-digit phone number!');
       return;
     }
 
     // Success (no backend, just UI)
     toast.success(`Consultation booked for ${plant.name}! We'll contact you soon. 🌿`);
     
-    // Reset form
-    setFormData({
-      name: user?.displayName || '',
-      email: user?.email || '',
-      phone: '',
-      preferredDate: '',
-      message: ''
+    // Debug info for Chrome issues
+    console.log('Consultation form submitted successfully:', {
+      plant: plant.name,
+      user: user?.email || 'Guest',
+      timestamp: new Date().toISOString(),
+      browser: navigator.userAgent
     });
     
-    // Scroll to top
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+      // Reset form
+      setFormData({
+        name: user?.displayName || '',
+        email: user?.email || '',
+        phone: '',
+        preferredDate: '',
+        message: ''
+      });
+
+      // Scroll to top
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    } catch (error) {
+      console.error('Consultation form error:', error);
+      toast.error('Something went wrong. Please try again.');
+    }
   };
 
   // Loading state
@@ -300,7 +320,9 @@ const PlantDetails = () => {
                       name="phone"
                       value={formData.phone}
                       onChange={handleInputChange}
-                      placeholder="10-digit mobile number"
+                      placeholder="11-digit mobile number"
+                      maxLength="11"
+                      pattern="[0-9]{11}"
                       className="input input-bordered w-full bg-gray-50 text-gray-900 placeholder:text-gray-400 focus:outline-none focus:border-[#4A7C59] focus:ring-2 focus:ring-[#4A7C59] rounded-lg"
                       required
                     />

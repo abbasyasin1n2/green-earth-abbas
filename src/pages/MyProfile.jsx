@@ -40,7 +40,6 @@ const MyProfile = () => {
       return;
     }
 
-    // Validate photo URL if provided
     if (formData.photoURL && !isValidURL(formData.photoURL)) {
       toast.error('Please enter a valid photo URL!');
       return;
@@ -53,7 +52,6 @@ const MyProfile = () => {
       toast.success('Profile updated successfully! ✨');
       setIsEditing(false);
     } catch (error) {
-      console.error('Profile update error:', error);
       toast.error('Failed to update profile. Please try again.');
     } finally {
       setLoading(false);
@@ -177,7 +175,6 @@ const MyProfile = () => {
                   </div>
                 </div>
               ) : (
-                // Edit Form
                 <form onSubmit={handleSubmit} className="space-y-6">
                   {/* Display Name Input */}
                   <div className="form-control">

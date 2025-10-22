@@ -37,7 +37,6 @@ const ForgotPassword = () => {
         navigate('/login');
       }, 2000);
     } catch (error) {
-      console.error('Password reset error:', error);
       
       switch (error.code) {
         case 'auth/user-not-found':

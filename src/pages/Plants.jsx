@@ -156,7 +156,7 @@ const Plants = () => {
         {filteredPlants.length > 0 ? (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {filteredPlants.map(plant => (
-              <div key={plant.id} className="card bg-base-100 shadow-xl hover:shadow-2xl transition-shadow duration-300">
+              <div key={plant.id} className="card bg-white shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-2">
                 <figure className="relative h-64 overflow-hidden">
                   <img
                     src={plant.image}

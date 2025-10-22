@@ -11,15 +11,15 @@ import 'swiper/css/pagination';
 import 'swiper/css/navigation';
 import 'swiper/css/effect-fade';
 
-// Import hero images
-import heroImage1 from '../assets/hero_images/1st_swipe_image.webp';
-import heroImage2 from '../assets/hero_images/2md_swipe_image.png';
-import heroImage3 from '../assets/hero_images/3rd_swipe_leftside_image.jpg';
+// Hero images
+const heroImage1 = '/assets/hero_images/1st_swipe_image.webp';
+const heroImage2 = '/assets/hero_images/2md_swipe_image.png';
+const heroImage3 = '/assets/hero_images/3rd_swipe_leftside_image.jpg';
 
-// Import expert images
-import expert1 from '../assets/plant_experts/closeup-portrait-woman-smiling-holding-flower-florist-replanting-flowers-ceramic-pot-using-shovel-gloves-fertil-soil-flowers-house-decoration.jpg';
-import expert2 from '../assets/plant_experts/medium-shot-man-looking-plant.jpg';
-import expert3 from '../assets/plant_experts/portrait-man-growing-plants.jpg';
+// Expert images
+const expert1 = '/assets/plant_experts/closeup-portrait-woman-smiling-holding-flower-florist-replanting-flowers-ceramic-pot-using-shovel-gloves-fertil-soil-flowers-house-decoration.jpg';
+const expert2 = '/assets/plant_experts/medium-shot-man-looking-plant.jpg';
+const expert3 = '/assets/plant_experts/portrait-man-growing-plants.jpg';
 
 const Home = () => {
   const [topPlants, setTopPlants] = useState([]);
@@ -206,7 +206,7 @@ const Home = () => {
             {topPlants.map((plant) => (
               <div
                 key={plant.id}
-                className="card bg-base-100 shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-2"
+                className="card bg-white shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-2"
               >
                 <figure className="relative px-0 pt-0 h-64 overflow-hidden">
                   <img
@@ -394,7 +394,7 @@ const Home = () => {
             <div className="relative">
               <div className="absolute -top-10 -right-10 w-64 h-64 bg-[#4A7C59] rounded-full blur-3xl opacity-20"></div>
               <img
-                src="/src/assets/plant_images/Aglaonema_red.jpg"
+                src="/assets/plant_images/Aglaonema_red.jpg"
                 alt="Plant of the Week"
                 className="relative rounded-2xl shadow-2xl w-full h-[500px] object-cover"
                 onError={(e) => {

@@ -14,7 +14,6 @@ const Login = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
-  // Redirect if already logged in
   useEffect(() => {
     if (user) {
       navigate('/');
@@ -23,7 +22,6 @@ const Login = () => {
 
   const from = location.state?.from?.pathname || '/';
 
-  // Handle email/password login
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
@@ -33,9 +31,7 @@ const Login = () => {
       toast.success('Login successful! Welcome back 🌿');
       navigate(from, { replace: true });
     } catch (error) {
-      console.error('Login error:', error);
       
-      // Handle specific Firebase errors
       switch (error.code) {
         case 'auth/invalid-email':
           toast.error('Please enter a valid email address');
@@ -69,7 +65,6 @@ const Login = () => {
       toast.success('Logged in with Google successfully! 🌿');
       navigate(from, { replace: true });
     } catch (error) {
-      console.error('Google sign-in error:', error);
       
       if (error.code === 'auth/popup-closed-by-user') {
         toast.error('Sign-in popup was closed');

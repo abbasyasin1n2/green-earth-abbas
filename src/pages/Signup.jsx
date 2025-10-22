@@ -73,7 +73,6 @@ const Signup = () => {
       toast.success('Account created successfully! Welcome to GreenNest 🌿');
       navigate('/');
     } catch (error) {
-      console.error('Signup error:', error);
       
       // Handle specific Firebase errors
       switch (error.code) {
@@ -106,7 +105,6 @@ const Signup = () => {
       toast.success('Signed up with Google successfully! 🌿');
       navigate('/');
     } catch (error) {
-      console.error('Google sign-in error:', error);
       
       if (error.code === 'auth/popup-closed-by-user') {
         toast.error('Sign-in popup was closed');
