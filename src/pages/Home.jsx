@@ -95,7 +95,8 @@ const Home = () => {
   return (
     <div className="min-h-screen">
       {/* Hero Section with Swiper */}
-      <section className="relative h-[600px] lg:h-[700px]">
+      <section className="container mx-auto px-4 lg:px-8 pt-4">
+        <div className="relative h-[50vh] md:h-[55vh] lg:h-[60vh] rounded-2xl overflow-hidden">
         <Swiper
           modules={[Autoplay, Pagination, Navigation, EffectFade]}
           effect="fade"
@@ -117,7 +118,7 @@ const Home = () => {
               style={{ backgroundImage: `url(${heroImage1})` }}
             >
               <div className="absolute inset-0 bg-black/40"></div>
-              <div className="relative h-full container mx-auto px-4 flex items-center">
+              <div className="relative h-full container mx-auto px-4 lg:px-8 flex items-center">
                 <div className="text-white max-w-2xl">
                   <motion.h1
                     initial={{ opacity: 0, y: 30 }}
@@ -159,7 +160,7 @@ const Home = () => {
               style={{ backgroundImage: `url(${heroImage2})` }}
             >
               <div className="absolute inset-0 bg-black/40"></div>
-              <div className="relative h-full container mx-auto px-4 flex items-center">
+              <div className="relative h-full container mx-auto px-4 lg:px-8 flex items-center">
                 <div className="text-white max-w-2xl">
                   <motion.h1
                     initial={{ opacity: 0, x: -30 }}
@@ -201,7 +202,7 @@ const Home = () => {
               style={{ backgroundImage: `url(${heroImage3})` }}
             >
               <div className="absolute inset-0 bg-black/40"></div>
-              <div className="relative h-full container mx-auto px-4 flex items-center">
+              <div className="relative h-full container mx-auto px-4 lg:px-8 flex items-center">
                 <div className="text-white max-w-2xl">
                   <motion.h1
                     initial={{ opacity: 0, scale: 0.9 }}
@@ -236,6 +237,7 @@ const Home = () => {
             </div>
           </SwiperSlide>
         </Swiper>
+        </div>
       </section>
 
       {/* Top Rated Indoor Plants Section */}
