@@ -614,6 +614,114 @@ const Home = () => {
           </motion.div>
         </div>
       </section>
+
+      {/* FAQ Section */}
+      <section className="py-20 bg-white">
+        <div className="container mx-auto px-4 lg:px-8">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+            className="text-center mb-16"
+          >
+            <p className="text-[#4A7C59] font-semibold mb-2 tracking-wide uppercase text-sm">
+              Got Questions?
+            </p>
+            <h2 className="section-heading">Frequently Asked Questions</h2>
+            <p className="section-subtitle">
+              Find answers to common questions about plant care, ordering, and delivery
+            </p>
+          </motion.div>
+
+          <div className="max-w-3xl mx-auto space-y-4">
+            {/* FAQ Item 1 */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+              viewport={{ once: true }}
+              className="collapse collapse-plus bg-[#F5F1E8] rounded-xl shadow-sm hover:shadow-md transition-shadow"
+            >
+              <input type="radio" name="faq-accordion" defaultChecked />
+              <div className="collapse-title text-lg font-semibold text-[#2F5233]">
+                How do I care for my new indoor plant?
+              </div>
+              <div className="collapse-content text-gray-600">
+                <p>Each plant comes with a detailed care guide. Generally, most indoor plants need indirect sunlight, watering when the top inch of soil is dry, and occasional fertilizing during growing season. Check your specific plant's care instructions for best results.</p>
+              </div>
+            </motion.div>
+
+            {/* FAQ Item 2 */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.1 }}
+              viewport={{ once: true }}
+              className="collapse collapse-plus bg-[#F5F1E8] rounded-xl shadow-sm hover:shadow-md transition-shadow"
+            >
+              <input type="radio" name="faq-accordion" />
+              <div className="collapse-title text-lg font-semibold text-[#2F5233]">
+                What is your delivery process?
+              </div>
+              <div className="collapse-content text-gray-600">
+                <p>We carefully package each plant to ensure safe delivery. Orders are typically processed within 1-2 business days and delivered within 3-5 business days. You'll receive tracking information once your order ships.</p>
+              </div>
+            </motion.div>
+
+            {/* FAQ Item 3 */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+              viewport={{ once: true }}
+              className="collapse collapse-plus bg-[#F5F1E8] rounded-xl shadow-sm hover:shadow-md transition-shadow"
+            >
+              <input type="radio" name="faq-accordion" />
+              <div className="collapse-title text-lg font-semibold text-[#2F5233]">
+                Do you offer plant consultation services?
+              </div>
+              <div className="collapse-content text-gray-600">
+                <p>Yes! We offer free plant consultation for all our customers. Simply fill out the consultation form on any plant's detail page, and our experts will contact you to discuss the best plants for your space and lifestyle.</p>
+              </div>
+            </motion.div>
+
+            {/* FAQ Item 4 */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.3 }}
+              viewport={{ once: true }}
+              className="collapse collapse-plus bg-[#F5F1E8] rounded-xl shadow-sm hover:shadow-md transition-shadow"
+            >
+              <input type="radio" name="faq-accordion" />
+              <div className="collapse-title text-lg font-semibold text-[#2F5233]">
+                What if my plant arrives damaged?
+              </div>
+              <div className="collapse-content text-gray-600">
+                <p>We guarantee healthy plants! If your plant arrives damaged or unhealthy, please contact us within 48 hours with photos. We'll either replace the plant or provide a full refund - no questions asked.</p>
+              </div>
+            </motion.div>
+
+            {/* FAQ Item 5 */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.4 }}
+              viewport={{ once: true }}
+              className="collapse collapse-plus bg-[#F5F1E8] rounded-xl shadow-sm hover:shadow-md transition-shadow"
+            >
+              <input type="radio" name="faq-accordion" />
+              <div className="collapse-title text-lg font-semibold text-[#2F5233]">
+                Are your plants pet-friendly?
+              </div>
+              <div className="collapse-content text-gray-600">
+                <p>Some plants are safe for pets, while others can be toxic if ingested. Each plant listing includes pet-safety information. Look for the "Pet Friendly" badge, or filter by pet-safe plants in our collection.</p>
+              </div>
+            </motion.div>
+          </div>
+        </div>
+      </section>
     </div>
   );
 };
