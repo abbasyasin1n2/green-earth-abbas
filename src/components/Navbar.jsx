@@ -99,6 +99,21 @@ const Navbar = () => {
                   location.pathname === '/plants' ? 'opacity-100' : 'opacity-0 group-hover:opacity-100'
                 }`}></span>
               </NavLink>
+              <NavLink
+                to="/about"
+                className={({ isActive }) =>
+                  `font-semibold transition-all duration-300 relative group ${
+                    isActive
+                      ? 'text-[#4A7C59]'
+                      : 'text-gray-700 hover:text-[#4A7C59]'
+                  }`
+                }
+              >
+                About Us
+                <span className={`absolute bottom-0 left-0 w-full h-0.5 bg-[#4A7C59] transition-all duration-300 ${
+                  location.pathname === '/about' ? 'opacity-100' : 'opacity-0 group-hover:opacity-100'
+                }`}></span>
+              </NavLink>
               {user && (
                 <NavLink
                   to="/profile"
@@ -116,20 +131,6 @@ const Navbar = () => {
                   }`}></span>
                 </NavLink>
               )}
-              <a
-                href="#about"
-                className="font-semibold transition-all duration-300 relative group text-gray-700 hover:text-[#4A7C59]"
-              >
-                About Us
-                <span className="absolute bottom-0 left-0 w-full h-0.5 bg-[#4A7C59] transition-all duration-300 opacity-0 group-hover:opacity-100"></span>
-              </a>
-              <a
-                href="#contact"
-                className="font-semibold transition-all duration-300 relative group text-gray-700 hover:text-[#4A7C59]"
-              >
-                Contact
-                <span className="absolute bottom-0 left-0 w-full h-0.5 bg-[#4A7C59] transition-all duration-300 opacity-0 group-hover:opacity-100"></span>
-              </a>
             </div>
 
             {/* Auth Section */}
@@ -260,6 +261,19 @@ const Navbar = () => {
               >
                 Plants
               </NavLink>
+              <NavLink
+                to="/about"
+                onClick={closeMobileMenu}
+                className={({ isActive }) =>
+                  `px-4 py-2 font-semibold rounded-lg transition-colors ${
+                    isActive
+                      ? 'bg-[#4A7C59] text-white'
+                      : 'text-gray-700 hover:bg-green-50'
+                  }`
+                }
+              >
+                About Us
+              </NavLink>
               {user && (
                 <NavLink
                   to="/profile"
@@ -275,20 +289,6 @@ const Navbar = () => {
                   My Profile
                 </NavLink>
               )}
-              <a
-                href="#about"
-                onClick={closeMobileMenu}
-                className="px-4 py-2 font-semibold rounded-lg transition-colors text-gray-700 hover:bg-green-50"
-              >
-                About Us
-              </a>
-              <a
-                href="#contact"
-                onClick={closeMobileMenu}
-                className="px-4 py-2 font-semibold rounded-lg transition-colors text-gray-700 hover:bg-green-50"
-              >
-                Contact
-              </a>
             </div>
 
             {/* Mobile Auth Section */}

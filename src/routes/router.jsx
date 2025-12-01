@@ -7,6 +7,7 @@ import Login from '../pages/Login';
 import Signup from '../pages/Signup';
 import ForgotPassword from '../pages/ForgotPassword';
 import MyProfile from '../pages/MyProfile';
+import AboutUs from '../pages/AboutUs';
 import ErrorPage from '../pages/ErrorPage';
 import PrivateRoute from './PrivateRoute';
 
@@ -23,6 +24,10 @@ const router = createBrowserRouter([
       {
         path: '/plants',
         element: <Plants />,
+      },
+      {
+        path: '/about',
+        element: <AboutUs />,
       },
       {
         path: '/plant/:id',

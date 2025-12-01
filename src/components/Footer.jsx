@@ -1,6 +1,7 @@
 import { FaInstagram, FaFacebook, FaPinterest, FaLeaf, FaHeart } from 'react-icons/fa';
 import { Leaf, Sprout } from 'lucide-react';
 import { motion } from 'motion/react';
+import { Link } from 'react-router';
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -28,34 +29,52 @@ const Footer = () => {
             </h4>
             <ul className="space-y-3">
               <li>
-                <motion.a
-                  href="#"
-                  className="text-gray-400 hover:text-white inline-flex items-center gap-2 group transition-all duration-200"
-                  whileHover={{ x: 5 }}
-                >
-                  <span className="w-0 h-0.5 bg-[#4A7C59] group-hover:w-4 transition-all duration-200"></span>
-                  About
-                </motion.a>
+                <motion.div whileHover={{ x: 5 }}>
+                  <Link
+                    to="/"
+                    onClick={() => window.scrollTo(0, 0)}
+                    className="text-gray-400 hover:text-white inline-flex items-center gap-2 group transition-all duration-200"
+                  >
+                    <span className="w-0 h-0.5 bg-[#4A7C59] group-hover:w-4 transition-all duration-200"></span>
+                    Home
+                  </Link>
+                </motion.div>
               </li>
               <li>
-                <motion.a
-                  href="#"
-                  className="text-gray-400 hover:text-white inline-flex items-center gap-2 group transition-all duration-200"
-                  whileHover={{ x: 5 }}
-                >
-                  <span className="w-0 h-0.5 bg-[#4A7C59] group-hover:w-4 transition-all duration-200"></span>
-                  Contact
-                </motion.a>
+                <motion.div whileHover={{ x: 5 }}>
+                  <Link
+                    to="/plants"
+                    onClick={() => window.scrollTo(0, 0)}
+                    className="text-gray-400 hover:text-white inline-flex items-center gap-2 group transition-all duration-200"
+                  >
+                    <span className="w-0 h-0.5 bg-[#4A7C59] group-hover:w-4 transition-all duration-200"></span>
+                    Browse Plants
+                  </Link>
+                </motion.div>
               </li>
               <li>
-                <motion.a
-                  href="#"
-                  className="text-gray-400 hover:text-white inline-flex items-center gap-2 group transition-all duration-200"
-                  whileHover={{ x: 5 }}
-                >
-                  <span className="w-0 h-0.5 bg-[#4A7C59] group-hover:w-4 transition-all duration-200"></span>
-                  Privacy Policy
-                </motion.a>
+                <motion.div whileHover={{ x: 5 }}>
+                  <Link
+                    to="/about"
+                    onClick={() => window.scrollTo(0, 0)}
+                    className="text-gray-400 hover:text-white inline-flex items-center gap-2 group transition-all duration-200"
+                  >
+                    <span className="w-0 h-0.5 bg-[#4A7C59] group-hover:w-4 transition-all duration-200"></span>
+                    About Us
+                  </Link>
+                </motion.div>
+              </li>
+              <li>
+                <motion.div whileHover={{ x: 5 }}>
+                  <Link
+                    to="/login"
+                    onClick={() => window.scrollTo(0, 0)}
+                    className="text-gray-400 hover:text-white inline-flex items-center gap-2 group transition-all duration-200"
+                  >
+                    <span className="w-0 h-0.5 bg-[#4A7C59] group-hover:w-4 transition-all duration-200"></span>
+                    Login
+                  </Link>
+                </motion.div>
               </li>
             </ul>
           </motion.div>
