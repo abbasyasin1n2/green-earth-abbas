@@ -26,11 +26,7 @@ const router = createBrowserRouter([
       },
       {
         path: '/plant/:id',
-        element: (
-          <PrivateRoute>
-            <PlantDetails />
-          </PrivateRoute>
-        ),
+        element: <PlantDetails />,
       },
       {
         path: '/login',
