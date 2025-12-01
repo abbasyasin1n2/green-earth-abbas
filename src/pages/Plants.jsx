@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router';
-import { FaStar, FaSearch, FaFilter } from 'react-icons/fa';
+import { FaStar, FaSearch, FaFilter, FaSortAmountDown, FaSortAmountUp } from 'react-icons/fa';
 import { Sprout } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 import plantsData from '../data/plants.json';
@@ -12,15 +12,16 @@ const Plants = () => {
   const [selectedCategory, setSelectedCategory] = useState('All');
   const [selectedDifficulty, setSelectedDifficulty] = useState('All');
   const [selectedLight, setSelectedLight] = useState('All');
+  const [sortOrder, setSortOrder] = useState('default');
 
   // Get unique categories, difficulties, and light requirements
   const categories = ['All', ...new Set(plants.map(plant => plant.category))];
   const difficulties = ['All', ...new Set(plants.map(plant => plant.difficulty))];
   const lightRequirements = ['All', ...new Set(plants.map(plant => plant.lightRequirement))];
 
-  // Apply filters
+  // Apply filters and sorting
   useEffect(() => {
-    let result = plants;
+    let result = [...plants];
 
     // Search filter
     if (searchTerm) {
@@ -45,8 +46,15 @@ const Plants = () => {
       result = result.filter(plant => plant.lightRequirement === selectedLight);
     }
 
+    // Price sorting
+    if (sortOrder === 'asc') {
+      result.sort((a, b) => a.price - b.price);
+    } else if (sortOrder === 'desc') {
+      result.sort((a, b) => b.price - a.price);
+    }
+
     setFilteredPlants(result);
-  }, [searchTerm, selectedCategory, selectedDifficulty, selectedLight, plants]);
+  }, [searchTerm, selectedCategory, selectedDifficulty, selectedLight, sortOrder, plants]);
 
   // Reset filters
   const resetFilters = () => {
@@ -54,6 +62,7 @@ const Plants = () => {
     setSelectedCategory('All');
     setSelectedDifficulty('All');
     setSelectedLight('All');
+    setSortOrder('default');
   };
 
   return (
@@ -108,7 +117,7 @@ const Plants = () => {
           </div>
 
           {/* Filters */}
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-4">
             {/* Category Filter */}
             <div>
               <label className="label">
@@ -154,6 +163,22 @@ const Plants = () => {
                 {lightRequirements.map(light => (
                   <option key={light} value={light}>{light}</option>
                 ))}
+              </select>
+            </div>
+
+            {/* Price Sort */}
+            <div>
+              <label className="label">
+                <span className="label-text font-medium text-gray-700">Sort by Price</span>
+              </label>
+              <select
+                value={sortOrder}
+                onChange={(e) => setSortOrder(e.target.value)}
+                className="select select-bordered w-full bg-gray-50 text-gray-900 focus:outline-none focus:border-[#4A7C59] focus:ring-2 focus:ring-[#4A7C59] rounded-lg"
+              >
+                <option value="default">Default</option>
+                <option value="asc">Price: Low to High</option>
+                <option value="desc">Price: High to Low</option>
               </select>
             </div>
 
